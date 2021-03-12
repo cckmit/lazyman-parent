@@ -1,0 +1,86 @@
+global:
+  timeZone: Asia/Shanghai
+
+knife4j:
+  enable: true
+  basic:
+    enable: true
+    username: admin
+    password: Jiayou2020
+  production: false
+
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: ${COTEXT_PATH:/}
+  tomcat:
+    min-spare-threads: 10
+    max-threads: 200
+    accept-count: 200
+    max-connections: 400
+    connection-timeout: 10000
+    max-swallow-size: 5MB
+    max-http-form-post-size: 16MB
+    basedir: /opt/tmp
+
+spring:
+  profiles:
+    active: ${APP_ENV:dev}
+  application:
+    name: ${APP_NAME:lazyman-web}
+  jackson:
+    time-zone: ${global.timeZone}
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+
+xss:
+  enable: true
+
+restclient:
+  enable: true
+  connectTimeout: 10000
+  connectionRequestTimeout: 10000
+  readTimeout: 20000
+
+kaptcha:
+  height: 40
+  width: 110
+  content:
+    length: 4
+    source: abcdefghjklmnopqrstuvwxyz23456789
+    space: 1
+  font:
+    color: black
+    name: Arial
+    size: 32
+  background-color:
+    from: lightGray
+    to: white
+  border:
+    enabled: false
+    color: black
+    thickness: 1
+
+mybatis-plus:
+  mapper-locations: classpath*:org/lazyman/**/xml/*Mapper.xml
+  global-config:
+    banner: false
+    table-underline: true
+    id-type: ASSIGN_ID
+  configuration:
+    call-setters-on-nulls: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+tenant:
+  enable: false
+  ignoreTables:
+  column: tenant_id
+
+auth:
+  api:
+    path: /api/**
+    excludePath: /api/auth/**

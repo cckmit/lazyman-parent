@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.lazyman.starter.pay.config.AlipayAutoConfig,\
+  org.lazyman.starter.pay.config.WepayAutoConfig

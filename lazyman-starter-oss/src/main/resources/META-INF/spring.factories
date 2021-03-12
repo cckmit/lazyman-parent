@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.lazyman.starter.oss.amazon.AmazonAutoConfig,\
+  org.lazyman.starter.oss.qiniu.QiNiuAutoConfig

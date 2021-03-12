@@ -1,0 +1,21 @@
+package ${cfg.vo};
+
+#if(${swagger2})
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+#end
+#if(${entityLombokModel})
+import lombok.Data;
+#end
+import java.util.List;
+import java.util.Date;
+#if(${entityLombokModel})
+@Data
+#end
+#if(${swagger2})
+@ApiModel(value="${table.comment}树返回对象")
+#end
+public class ${entity}TreeVO extends ${entity}VO {
+    @ApiModelProperty(value = "叶子节点列表")
+    private List<${entity}TreeVO> children;
+}

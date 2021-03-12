@@ -1,0 +1,190 @@
+package ${package.ServiceImpl};
+
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.Service}.${table.serviceName};
+import ${superServiceImplClassPackage};
+import ${cfg.parent}.dto.${entity}FormDTO;
+import ${cfg.parent}.vo.${entity}VO;
+import ${cfg.parent}.dto.${entity}QueryDTO;
+    #if(${cfg.isOutputTreeAction})
+import ${cfg.parent}.vo.${entity}TreeVO;
+#end
+#if(${cfg.isOutputStateAction})
+import org.lazyman.core.base.dto.StateActionDTO;
+#end
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.lazyman.common.constant.CommonErrCode;
+import org.lazyman.common.exception.BizException;
+import org.lazyman.core.base.vo.PageVO;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import org.springframework.stereotype.Service;
+
+/**
+ * <p>
+ * $!{table.comment} 服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+#if(${kotlin})
+open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}>(), ${table.serviceName} {
+
+}
+#else
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
+    #set($humpEntity=$entity.substring(0,1).toLowerCase() + ${entity.substring(1)})
+    @Override
+    public Boolean exists(${entity}FormDTO ${humpEntity}FormDTO) {
+        return ObjectUtil.isNotNull(getOne(Wrappers.<${entity}>query().lambda()
+        //todo query condition
+        .ne(ObjectUtil.isNotNull(${humpEntity}FormDTO.getId()), ${entity}::getId, ${humpEntity}FormDTO.getId())));
+    }
+
+    @Override
+    public ${entity} existsById(Long id) {
+        ${entity} ${humpEntity} = getById(id);
+        if (ObjectUtil.isNull(${humpEntity})) {
+            throw new BizException(CommonErrCode.NOT_FOUND);
+        }
+        return ${humpEntity};
+    }
+
+    @Override
+        @Transactional(rollbackFor = Exception.class)
+    public Long save(${entity}FormDTO ${humpEntity}FormDTO) {
+        if (exists(${humpEntity}FormDTO)) {
+            throw new BizException(CommonErrCode.REPEAT_CREATE);
+        }
+        ${entity} ${humpEntity} = BeanUtil.copyProperties(${humpEntity}FormDTO, ${entity}.class);
+        save(${humpEntity});
+        return ${humpEntity}.getId();
+    }
+
+    @Override
+        @Transactional(rollbackFor = Exception.class)
+    public Boolean edit(${entity}FormDTO ${humpEntity}FormDTO) {
+        existsById(${humpEntity}FormDTO.getId());
+        if (exists(${humpEntity}FormDTO)) {
+            throw new BizException(CommonErrCode.REPEAT_CREATE);
+        }
+        return updateById(BeanUtil.copyProperties(${humpEntity}FormDTO, ${entity}.class));
+    }
+
+    @Override
+    public ${entity}VO getDetail(Long id) {
+        return BeanUtil.copyProperties(existsById(id), ${entity}VO.class);
+    }
+
+    @Override
+    public Boolean delete(Long[] ids) {
+        if (ObjectUtil.isEmpty(ids)) {
+            return false;
+        }
+        return deleteLogic(Arrays.asList(ids));
+    }
+
+    @Override
+    public PageVO<${entity}VO> listByPage(${entity}QueryDTO ${humpEntity}QueryDTO) {
+        Page<${entity}> ${humpEntity}Page = new Page<>(${humpEntity}QueryDTO.getPageNo(), ${humpEntity}QueryDTO.getPageSize());
+        IPage<${entity}VO> ${humpEntity}VOIPage = page(${humpEntity}Page, Wrappers.<${entity}>query().lambda()
+        //todo query condition
+        .eq(ObjectUtil.isNotEmpty(${humpEntity}QueryDTO.getState()), ${entity}::getState, ${humpEntity}QueryDTO.getState())
+        .between(StrUtil.isAllNotBlank(${humpEntity}QueryDTO.getBeginTime(), ${humpEntity}QueryDTO.getEndTime()), ${entity}::getCreateTime, ${humpEntity}QueryDTO.getBeginTime(), ${humpEntity}QueryDTO.getEndTime())
+        .orderByDesc(${entity}::getCreateTime)).convert(v -> BeanUtil.copyProperties(v, ${entity}VO.class));
+        return new PageVO<>(${humpEntity}VOIPage.getTotal(), ${humpEntity}VOIPage.getRecords());
+    }
+
+    #if(${cfg.isOutputSelectOption})
+    @Override
+    public List<${entity}VO> listSelectOptions(String keyword) {
+        List<${entity}VO> selectOptionVOList = new ArrayList<>();
+        List<${entity}> ${humpEntity}List = list(Wrappers.<${entity}>query().lambda()
+            //todo .like(StrUtil.isNotBlank(keyword), ${entity}::getNickname, keyword)
+            .orderByAsc(${entity}::getCreateTime));
+        if (CollectionUtil.isEmpty(${humpEntity}List)) {
+            return selectOptionVOList;
+        }
+        return ${humpEntity}List.stream().map(v -> BeanUtil.copyProperties(v, ${entity}VO.class)).collect(Collectors.toList());
+    }
+    #end
+
+    #if(${cfg.isOutputStateAction})
+    @Override
+    public Boolean updateState(StateActionDTO stateActionDTO) {
+            existsById(stateActionDTO.getId());
+        return updateByWrapper(Wrappers.<${entity}>update().lambda().eq(${entity}::getId, stateActionDTO.getId())
+            .eq(${entity}::getState, !stateActionDTO.getState())
+            .set(${entity}::getState, stateActionDTO.getState()));
+    }
+    #end
+    #if(${cfg.isOutputTreeAction})
+
+    /**
+         * 构建树列表
+         * @param ${humpEntity}Map
+         * @param ${humpEntity}List
+         * @param ${humpEntity}TreeVOList
+         */
+    private void buildTreeList(Map<Long, List<${entity}>> ${humpEntity}ParentIdMap, List<${entity}> ${humpEntity}List, List<${entity}TreeVO> ${humpEntity}TreeVOList) {
+        ${humpEntity}List = ${humpEntity}List.stream().sorted(Comparator.comparing(${entity}::getSort)).collect(Collectors.toList());
+        ${humpEntity}List.stream().forEach(p -> {
+            ${entity}TreeVO ${humpEntity}TreeVO = BeanUtil.copyProperties(p, ${entity}TreeVO.class);
+            ${humpEntity}TreeVOList.add(${humpEntity}TreeVO);
+            List<${entity}> childrens = ${humpEntity}ParentIdMap.get(p.getId());
+            if (CollectionUtil.isEmpty(childrens)) {
+                ${humpEntity}TreeVO.setChildren(new ArrayList<>());
+                return;
+            }
+            List<${entity}TreeVO> childrensVOList = new ArrayList<>();
+            buildTreeList(${humpEntity}ParentIdMap, childrens, childrensVOList);
+            ${humpEntity}TreeVO.setChildren(childrensVOList);
+        });
+    }
+
+    @Override
+    public List<${entity}TreeVO> listByTree(${entity}QueryDTO ${humpEntity}QueryDTO) {
+        List<${entity}TreeVO> ${humpEntity}TreeVOList = new ArrayList<>();
+        List<${entity}> ${humpEntity}List = list(Wrappers.<${entity}>query().lambda()
+            //todo query condition
+        );
+        if (CollectionUtil.isEmpty(${humpEntity}List)) {
+            return ${humpEntity}TreeVOList;
+        }
+        Map<Long, List<${entity}>> ${humpEntity}ParentIdMap = ${humpEntity}List.stream().collect(Collectors.groupingBy(e -> e.getParentId()));
+        List<${entity}> ${humpEntity}RootList = ${humpEntity}ParentIdMap.get(CollectionUtil.min(${humpEntity}ParentIdMap.keySet()));
+        if (CollectionUtil.isEmpty(${humpEntity}RootList)) {
+            return ${humpEntity}TreeVOList;
+        }
+        buildTreeList(${humpEntity}ParentIdMap, ${humpEntity}RootList, ${humpEntity}TreeVOList);
+        return ${humpEntity}TreeVOList;
+    }
+
+    @Override
+    public List<${entity}VO> listChildrensByParentId(Long parentId) {
+        List<${entity}> ${humpEntity}List = list(Wrappers.<${entity}>query().lambda()
+            .eq(${entity}::getParentId, parentId)
+        //todo query condition
+        );
+        if (CollectionUtil.isEmpty(${humpEntity}List)) {
+            return new ArrayList<>();
+        }
+        ${humpEntity}List = ${humpEntity}List.stream().sorted(Comparator.comparing(${entity}::getSort)).collect(Collectors.toList());
+        return ${humpEntity}List.stream().map(m -> BeanUtil.copyProperties(m, ${entity}VO.class)).collect(Collectors.toList());
+    }
+    #end
+}
+#end

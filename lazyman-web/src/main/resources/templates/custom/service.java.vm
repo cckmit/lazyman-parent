@@ -1,0 +1,124 @@
+package ${package.Service};
+
+import ${package.Entity}.${entity};
+import ${cfg.parent}.dto.${entity}FormDTO;
+import ${cfg.parent}.vo.${entity}VO;
+import ${cfg.parent}.dto.${entity}QueryDTO;
+    #if(${cfg.isOutputTreeAction})
+import ${cfg.parent}.vo.${entity}TreeVO;
+#end
+#if(${cfg.isOutputStateAction})
+import org.lazyman.core.base.dto.StateActionDTO;
+#end
+import org.lazyman.core.base.vo.PageVO;
+import java.util.List;
+import ${superServiceClassPackage};
+
+/**
+ * <p>
+ * $!{table.comment} 服务类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${kotlin})
+interface ${table.serviceName} : ${superServiceClass}<${entity}>
+#else
+public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
+    #set($humpEntity=$entity.substring(0,1).toLowerCase() + ${entity.substring(1)})
+    /**
+     * 通过表单数据检查是否重复创建
+     *
+     * @param ${humpEntity}FormDTO
+     * @return
+     */
+    Boolean exists(${entity}FormDTO ${humpEntity}FormDTO);
+
+    /**
+     * 通过ID检查是否存在
+     *
+     * @param id
+     * @return
+     */
+    ${entity} existsById(Long id);
+
+    /**
+     * 新增
+     *
+     * @param ${humpEntity}FormDTO
+     * @return
+     */
+    Long save(${entity}FormDTO ${humpEntity}FormDTO);
+
+    /**
+     * 编辑
+     *
+     * @param ${humpEntity}FormDTO
+     * @return
+     */
+    Boolean edit(${entity}FormDTO ${humpEntity}FormDTO);
+
+    /**
+     * 根据ID查询详情
+     *
+     * @param id
+     * @return
+     */
+     ${entity}VO getDetail(Long id);
+
+    /**
+     * 逻辑删除
+     *
+     * @param ids
+     * @return
+     */
+    Boolean delete(Long[] ids);
+
+    /**
+    * 分页查询
+    *
+    * @param ${humpEntity}QueryDTO
+    * @return
+    */
+    PageVO<${entity}VO> listByPage(${entity}QueryDTO ${humpEntity}QueryDTO);
+
+    #if(${cfg.isOutputSelectOption})
+    /**
+     * 加载下拉选项，支持关键字搜索
+     *
+     * @param keyword
+     * @return
+     */
+    List<${entity}VO> listSelectOptions(String keyword);
+    #end
+
+    #if(${cfg.isOutputStateAction})
+    /**
+     * 状态操作,一般用于启用禁用操作
+     *
+     * @param stateActionDTO
+     * @return
+     */
+    Boolean updateState(StateActionDTO stateActionDTO);
+    #end
+    #if(${cfg.isOutputTreeAction})
+
+    /**
+     * 查询树列表
+     *
+     * @param ${humpEntity}QueryDTO
+     * @return
+     */
+    List<${entity}TreeVO> listByTree(${entity}QueryDTO ${humpEntity}QueryDTO);
+
+    /**
+     * "根据父ID查询子节点列表
+     *
+     * @param parentId
+     * @return
+     */
+    List<${entity}VO> listChildrensByParentId(Long parentId);
+    #end
+}
+#end

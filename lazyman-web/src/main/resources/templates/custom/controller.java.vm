@@ -1,0 +1,129 @@
+package ${package.Controller};
+
+import ${cfg.parent}.dto.${entity}FormDTO;
+import ${cfg.parent}.vo.${entity}VO;
+import ${cfg.parent}.dto.${entity}QueryDTO;
+#if(${cfg.isOutputTreeAction})
+import ${cfg.parent}.vo.${entity}TreeVO;
+#end
+import org.lazyman.core.base.vo.PageVO;
+#if(${cfg.isOutputStateAction})
+import org.lazyman.core.base.dto.StateActionDTO;
+#end
+import org.lazyman.starter.redisson.annotation.Idempotency;
+import org.springframework.web.bind.annotation.*;
+import javax.annotation.Resource;
+import org.lazyman.core.base.vo.ResultVO;
+import javax.validation.Valid;
+import java.util.List;
+
+#if(${restControllerStyle})
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+#else
+import org.springframework.stereotype.Controller;
+#end
+#if(${superControllerClassPackage})
+import ${superControllerClassPackage};
+#end
+#if(${swagger2})
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+#end
+import ${package.Service}.${table.serviceName};
+/**
+ * <p>
+ * $!{table.comment}api接口 前端控制器
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${swagger2})
+@Api(tags = "${table.comment}api接口")
+#end
+#if(${restControllerStyle})
+@RestController
+#else
+@Controller
+#end
+#set($humpEntity=$entity.substring(0,1).toLowerCase() + ${entity.substring(1)})
+#set($serviceName=$table.serviceName.substring(0,1).toLowerCase() + ${table.serviceName.substring(1)})
+@RequestMapping("/api/${entity.toLowerCase()}s")
+#if(${kotlin})
+class ${table.controllerName}#if(${superControllerClass}) : ${superControllerClass}()#end
+
+#else
+#if(${superControllerClass})
+public class ${entity}Controller extends ${superControllerClass} {
+#else
+public class ${entity}Controller {
+#end
+    @Resource
+    private ${table.serviceName} ${serviceName};
+
+    @ApiOperation(value = "新增${table.comment}")
+    @PostMapping
+    @Idempotency
+    public ResultVO<Long> save${entity}(@Valid @RequestBody ${entity}FormDTO ${humpEntity}FormDTO) {
+        return ResultVO.ok(${serviceName}.save(${humpEntity}FormDTO));
+    }
+
+    @ApiOperation(value = "编辑${table.comment}")
+    @PutMapping(value = "/{id}")
+    @Idempotency
+    public ResultVO edit${entity}(@ApiParam(value = "${table.comment}ID", required = true) @PathVariable(value = "id") Long id, @Valid @RequestBody ${entity}FormDTO ${humpEntity}FormDTO) {
+        ${humpEntity}FormDTO.setId(id);
+        return ResultVO.ok(${serviceName}.edit(${humpEntity}FormDTO));
+    }
+
+    @ApiOperation(value = "删除${table.comment}")
+    @DeleteMapping(value = "/{ids}")
+    public ResultVO delete${entity}(@ApiParam(value = "${table.comment}ID集合，多个用英文逗号隔开", required = true) @PathVariable(value = "ids") Long[] ids) {
+        return ResultVO.ok(${serviceName}.delete(ids));
+    }
+
+    @ApiOperation(value = "根据ID查询${table.comment}详情")
+    @GetMapping(value = "/{id}")
+    public ResultVO<${entity}VO> get${entity}Detail(@ApiParam(value = "${table.comment}ID", required = true) @PathVariable(value = "id") Long id) {
+        return ResultVO.ok(${serviceName}.getDetail(id));
+    }
+
+    @ApiOperation(value = "分页查询${table.comment}")
+    @GetMapping
+    public ResultVO<PageVO<${entity}VO>> listByPage(${entity}QueryDTO ${humpEntity}QueryDTO) {
+        return ResultVO.ok(${serviceName}.listByPage(${humpEntity}QueryDTO));
+    }
+
+    #if(${cfg.isOutputSelectOption})
+        @ApiOperation(value = "查询${table.comment}下拉选项")
+        @GetMapping(value = "/options")
+    public ResultVO<List<${entity}VO>> listSelectOptions(@ApiParam(value = "搜索关键字") @RequestParam(value = "keyword", required = false) String keyword) {
+        return ResultVO.ok(${serviceName}.listSelectOptions(keyword));
+    }
+    #end
+    #if(${cfg.isOutputStateAction})
+        @ApiOperation(value = "启用/禁用${table.comment}")
+        @PatchMapping(value = "/{id}")
+    public ResultVO updateState(@ApiParam(value = "${table.comment}ID", required = true) @PathVariable("id") Long id, @Valid @RequestBody StateActionDTO stateActionDTO) {
+        stateActionDTO.setId(id);
+        return ResultVO.ok(${serviceName}.updateState(stateActionDTO));
+    }
+    #end
+    #if(${cfg.isOutputTreeAction})
+        @ApiOperation(value = "查询${table.comment}树列表")
+    @GetMapping(value = "/treeList")
+    public ResultVO<List<${entity}TreeVO>> listByTree(${entity}QueryDTO ${humpEntity}QueryDTO) {
+        return ResultVO.ok(${serviceName}.listByTree(${humpEntity}QueryDTO));
+    }
+
+        @ApiOperation(value = "根据${table.comment}父ID查询子节点列表")
+    @GetMapping(value = "/children/{parentId}")
+    public ResultVO<List<${entity}VO>> listChildrensByParentId(@ApiParam(value = "${table.comment}父ID", required = true) @PathVariable("parentId") Long parentId) {
+        return ResultVO.ok(${serviceName}.listChildrensByParentId(parentId));
+    }
+    #end
+}
+#end

@@ -1,0 +1,37 @@
+package ${cfg.dto};
+
+#if(${swagger2})
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+#end
+#if(${entityLombokModel})
+import java.util.Date;
+import lombok.Data;
+#end
+import org.lazyman.core.base.dto.BaseQueryDTO;
+#if(${swagger2})
+@ApiModel(value="${table.comment}查询参数对象")
+#end
+#if(${entityLombokModel})
+@Data
+#end
+public class ${entity}QueryDTO extends BaseQueryDTO  {
+## ----------  BEGIN 字段循环遍历  ----------
+#foreach($field in ${table.fields})
+
+#if(${field.keyFlag})
+#set($keyPropertyName=${field.propertyName})
+#end
+#if("$!field.comment" != "")
+  #if(${swagger2})
+    @ApiModelProperty(value = "${field.comment}")
+  #else
+    /**
+     * ${field.comment}
+     */
+  #end
+#end
+    private ${field.propertyType} ${field.propertyName};
+#end
+## ----------  END 字段循环遍历  ----------
+}
