@@ -1,11 +1,11 @@
-package org.lazyman.starter.rabbitmq.bo;
+package org.lazyman.starter.rabbitmq.model;
 
 import lombok.Data;
 
 import java.io.Serializable;
 
 @Data
-public class MqConfirmMessageBO implements Serializable {
+public class MqConfirmMessage implements Serializable {
     private Long id;
 
     private Boolean result;

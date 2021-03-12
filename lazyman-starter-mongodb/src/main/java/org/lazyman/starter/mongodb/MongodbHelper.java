@@ -17,7 +17,7 @@ import java.util.Map;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class MongoHelper {
+public class MongodbHelper {
     private MongoTemplate mongoTemplate;
 
     public <T> T save(T t, String collection) {

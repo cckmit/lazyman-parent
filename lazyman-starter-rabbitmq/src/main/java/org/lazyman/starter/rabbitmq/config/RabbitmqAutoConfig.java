@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableConfigurationProperties(RabbitmqProperties.class)
-public class RabbitmqConfig {
+public class RabbitmqAutoConfig {
     @Bean
     @ConditionalOnMissingBean
     public RabbitmqHelper rabbitmqHelper(RabbitmqProperties rabbitmqProperties, RabbitTemplate rabbitTemplate) {

@@ -11,10 +11,10 @@ import org.lazyman.common.exception.BizException;
 import org.lazyman.common.util.IDGeneratorUtils;
 import org.lazyman.common.util.MD5Utils;
 import org.lazyman.common.util.UUIDUtils;
-import org.lazyman.starter.rabbitmq.bo.MqConfirmMessageBO;
-import org.lazyman.starter.rabbitmq.bo.MqMessageBO;
 import org.lazyman.starter.rabbitmq.config.RabbitmqProperties;
-import org.lazyman.starter.rabbitmq.constant.RabbitConstant;
+import org.lazyman.starter.rabbitmq.constant.RabbitmqConstant;
+import org.lazyman.starter.rabbitmq.model.MqConfirmMessage;
+import org.lazyman.starter.rabbitmq.model.MqMessage;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.AmqpHeaders;
@@ -34,12 +34,12 @@ public class RabbitmqHelper {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public String sign(MqMessageBO message) {
+    public String sign(MqMessage message) {
         String content = JSONUtil.toJsonStr(message.getBody()) + message.getNonce() + message.getTimestamp() + rabbitmqProperties.getSecretKey();
         return MD5Utils.encode(content);
     }
 
-    public void verifySign(MqMessageBO message) {
+    public void verifySign(MqMessage message) {
         String content = JSONUtil.toJsonStr(message.getBody()) + message.getNonce() + message.getTimestamp() + rabbitmqProperties.getSecretKey();
         String sign = MD5Utils.encode(content);
         if (!sign.equalsIgnoreCase(message.getSign())) {
@@ -47,25 +47,25 @@ public class RabbitmqHelper {
         }
     }
 
-    public void confirmSuccess(MqMessageBO mqMessageBO, Channel channel, @Headers Map<String, Object> headers, Throwable throwable) {
+    public void confirmSuccess(MqMessage mqMessage, Channel channel, @Headers Map<String, Object> headers, Throwable throwable) {
         Long tag = (Long) headers.get(AmqpHeaders.DELIVERY_TAG);
         try {
             channel.basicAck(tag, false);
         } catch (Exception e) {
             log.error("Confirm success occur exception, delivery tag:{}", tag);
         } finally {
-            sendConfirmMessage(mqMessageBO, true, ExceptionUtil.stacktraceToString(throwable));
+            sendConfirmMessage(mqMessage, true, ExceptionUtil.stacktraceToString(throwable));
         }
     }
 
-    public void confirmFail(MqMessageBO mqMessageBO, Channel channel, @Headers Map<String, Object> headers, Throwable throwable) {
+    public void confirmFail(MqMessage mqMessage, Channel channel, @Headers Map<String, Object> headers, Throwable throwable) {
         Long tag = (Long) headers.get(AmqpHeaders.DELIVERY_TAG);
         try {
             channel.basicReject(tag, false);
         } catch (Exception e) {
             log.error("Confirm fail occur exception, delivery tag:{}", tag);
         } finally {
-            sendConfirmMessage(mqMessageBO, false, ExceptionUtil.stacktraceToString(throwable));
+            sendConfirmMessage(mqMessage, false, ExceptionUtil.stacktraceToString(throwable));
         }
     }
 
@@ -81,28 +81,28 @@ public class RabbitmqHelper {
         log.error("Producer return, message:{},replyCode:{},replyText:{},exchange:{},routingKey:{}", JSONUtil.toJsonStr(message), replyCode, replyText, exchange, routingKey);
     };
 
-    public void sendMessage(MqMessageBO mqMessageBO, String exchange, String routingkey) {
+    public void sendMessage(MqMessage mqMessage, String exchange, String routingkey) {
         rabbitTemplate.setConfirmCallback(confirmCallback);
         rabbitTemplate.setReturnCallback(returnCallback);
-        rabbitTemplate.convertAndSend(exchange, routingkey, mqMessageBO, new CorrelationData(String.valueOf(mqMessageBO.getId())));
+        rabbitTemplate.convertAndSend(exchange, routingkey, mqMessage, new CorrelationData(String.valueOf(mqMessage.getId())));
     }
 
-    private void sendConfirmMessage(MqMessageBO bizMqMessageBO, boolean result, String remark) {
+    private void sendConfirmMessage(MqMessage bizMqMessage, boolean result, String remark) {
         //消息结构
-        MqMessageBO mqMessageBO = new MqMessageBO();
-        mqMessageBO.setTenantId(bizMqMessageBO.getTenantId());
-        mqMessageBO.setId(IDGeneratorUtils.getInstance().nextId());
-        mqMessageBO.setTag(RabbitConstant.CONSUME_CONFIRM_TAG);
-        mqMessageBO.setNonce(UUIDUtils.getShortUUID());
-        mqMessageBO.setTimestamp(System.currentTimeMillis());
+        MqMessage mqMessage = new MqMessage();
+        mqMessage.setTenantId(bizMqMessage.getTenantId());
+        mqMessage.setId(IDGeneratorUtils.getInstance().nextId());
+        mqMessage.setTag(RabbitmqConstant.CONSUME_CONFIRM_TAG);
+        mqMessage.setNonce(UUIDUtils.getShortUUID());
+        mqMessage.setTimestamp(System.currentTimeMillis());
         //消息内容
-        MqConfirmMessageBO mqConfirmMessageBO = new MqConfirmMessageBO();
-        mqConfirmMessageBO.setId(bizMqMessageBO.getId());
-        mqConfirmMessageBO.setResult(result);
-        mqConfirmMessageBO.setRemark(remark);
-        mqMessageBO.setBody(JSONUtil.toJsonStr(mqConfirmMessageBO));
-        String sign = sign(mqMessageBO);
-        mqMessageBO.setSign(sign);
-        sendMessage(mqMessageBO, RabbitConstant.CONSUME_CONFIRM_EXCHANGE, RabbitConstant.CONSUME_CONFIRM_ROUTINGKEY);
+        MqConfirmMessage mqConfirmMessage = new MqConfirmMessage();
+        mqConfirmMessage.setId(bizMqMessage.getId());
+        mqConfirmMessage.setResult(result);
+        mqConfirmMessage.setRemark(remark);
+        mqMessage.setBody(JSONUtil.toJsonStr(mqConfirmMessage));
+        String sign = sign(mqMessage);
+        mqMessage.setSign(sign);
+        sendMessage(mqMessage, RabbitmqConstant.CONSUME_CONFIRM_EXCHANGE, RabbitmqConstant.CONSUME_CONFIRM_ROUTINGKEY);
     }
 }

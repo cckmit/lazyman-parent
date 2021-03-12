@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  org.lazyman.starter.rabbitmq.config.RabbitmqConfig
+  org.lazyman.starter.rabbitmq.config.RabbitmqAutoConfig
