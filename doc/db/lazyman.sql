@@ -10,10 +10,37 @@ Target Server Type    : MYSQL
 Target Server Version : 50732
 File Encoding         : 65001
 
-Date: 2021-03-12 22:37:14
+Date: 2021-03-13 13:04:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for t_app_user
+-- ----------------------------
+DROP TABLE IF EXISTS `t_app_user`;
+CREATE TABLE `t_app_user` (
+  `id` bigint(20) unsigned NOT NULL COMMENT 'ID',
+  `nickname` varchar(100) DEFAULT NULL COMMENT '昵称',
+  `mobile` char(11) DEFAULT NULL COMMENT '手机',
+  `avatar` varchar(255) DEFAULT NULL COMMENT '个性头像',
+  `sex` char(1) DEFAULT NULL COMMENT '性别',
+  `birth` date DEFAULT NULL COMMENT '生日',
+  `state` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '启用状态',
+  `union_id` varchar(100) DEFAULT NULL COMMENT '微信统一ID',
+  `open_id` varchar(100) DEFAULT NULL COMMENT '微信开放ID',
+  `is_deleted` tinyint(1) unsigned NOT NULL COMMENT '刪除标识',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `create_by` bigint(20) unsigned NOT NULL COMMENT '创建人',
+  `update_time` datetime DEFAULT NULL COMMENT '修改时间',
+  `update_by` bigint(20) unsigned DEFAULT NULL COMMENT '修改人',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='APP用户信息';
+
+-- ----------------------------
+-- Records of t_app_user
+-- ----------------------------
+INSERT INTO `t_app_user` VALUES ('5343949279904016', null, '18516246325', 'http://qp2g29tsi.hd-bkt.clouddn.com/20210302/2feb620f55c5415fa24251c9bc19c0ca.', null, null, '1', null, '123456', '0', '2021-03-06 12:09:14', '0', null, null);
 
 -- ----------------------------
 -- Table structure for t_sms_channel
@@ -73,6 +100,8 @@ CREATE TABLE `t_sms_task` (
 -- ----------------------------
 INSERT INTO `t_sms_task` VALUES ('5346990309081360', '5346990309048592', '1', '10', '18516246325', '【戎业科技】验证码300631,有效期5分钟', '1', '5341572955373840', '2021-03-08 15:42:44.280', '0', '0', '2021-03-08 15:42:44', '0', '2021-03-08 15:42:44');
 INSERT INTO `t_sms_task` VALUES ('5346991679979793', '5346991679979792', '1', '10', '18516246325', '【戎业科技】验证码782530,有效期5分钟', '1', '5341572955373840', '2021-03-08 15:44:07.510', '0', '0', '2021-03-08 15:44:07', '0', '2021-03-08 15:44:08');
+INSERT INTO `t_sms_task` VALUES ('5353732747215120', '5353732747198736', '1', '10', '18516246325', '【戎业科技】验证码339633,有效期5分钟', '1', '5341572955373840', '2021-03-13 10:01:29.682', '0', '0', '2021-03-13 10:01:29', '0', '2021-03-13 10:01:30');
+INSERT INTO `t_sms_task` VALUES ('5353763348824336', '5353763348807952', '1', '10', '18516246325', '【戎业科技】验证码551300,有效期5分钟', '1', '5341572955373840', '2021-03-13 10:32:37.467', '0', '0', '2021-03-13 10:32:37', '0', '2021-03-13 10:32:37');
 
 -- ----------------------------
 -- Table structure for t_sms_template
@@ -278,6 +307,31 @@ INSERT INTO `t_sys_login_log` VALUES ('5351595061035280', 'admin', '0:0:0:0:0:0:
 INSERT INTO `t_sys_login_log` VALUES ('5351595180966160', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '1', '登录成功', '1', '2021-03-11 21:47:03', '0', '2021-03-12 21:34:07', '5332937727967504');
 INSERT INTO `t_sys_login_log` VALUES ('5352907307630864', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '1', '登录成功', '1', '2021-03-12 20:01:49', '0', '2021-03-12 21:34:07', '5332937727967504');
 INSERT INTO `t_sys_login_log` VALUES ('5352949461090576', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '1', '登录成功', '1', '2021-03-12 20:44:41', '0', '2021-03-12 21:34:07', '5332937727967504');
+INSERT INTO `t_sys_login_log` VALUES ('5353742427701520', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '0', '图形验证码输入错误', '0', '2021-03-13 10:11:20', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353742441103632', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '0', '图形验证码输入错误', '0', '2021-03-13 10:11:21', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353742448279824', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '0', '图形验证码输入错误', '0', '2021-03-13 10:11:22', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353742451441936', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '0', '图形验证码输入错误', '0', '2021-03-13 10:11:22', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353742454833424', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '0', '图形验证码输入错误', '0', '2021-03-13 10:11:22', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353742457946384', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '0', '图形验证码输入错误', '0', '2021-03-13 10:11:22', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353744085221648', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '0', '图形验证码输入错误', '0', '2021-03-13 10:13:01', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353744096411920', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '0', '图形验证码输入错误', '0', '2021-03-13 10:13:02', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353744106864912', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '0', '图形验证码输入错误', '0', '2021-03-13 10:13:03', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353744117711120', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '0', '图形验证码输入错误', '0', '2021-03-13 10:13:03', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353744127885584', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '0', '图形验证码输入错误', '0', '2021-03-13 10:13:04', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353744137519376', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '0', '图形验证码输入错误', '0', '2021-03-13 10:13:05', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353744191783184', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '0', '图形验证码输入错误', '0', '2021-03-13 10:13:08', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353744207560976', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '0', '图形验证码输入错误', '0', '2021-03-13 10:13:09', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353744211099920', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '0', '图形验证码输入错误', '0', '2021-03-13 10:13:09', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353744213934352', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '0', '图形验证码输入错误', '0', '2021-03-13 10:13:09', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353744216539408', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '0', '图形验证码输入错误', '0', '2021-03-13 10:13:09', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353746339643664', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '1', '登录成功', '0', '2021-03-13 10:15:19', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353756308783376', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '1', '登录成功', '0', '2021-03-13 10:25:27', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353756446048528', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '0', '图形验证码输入错误', '0', '2021-03-13 10:25:36', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353756571762960', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '1', '登录成功', '0', '2021-03-13 10:25:44', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353758046224656', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '1', '登录成功', '0', '2021-03-13 10:27:14', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353758154735888', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '0', '图形验证码输入错误', '0', '2021-03-13 10:27:20', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353758306517264', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '1', '登录成功', '0', '2021-03-13 10:27:29', '0', null, null);
+INSERT INTO `t_sys_login_log` VALUES ('5353759915819280', 'admin', '0:0:0:0:0:0:0:1', null, 'Windows', 'Chrome-72.0.3626.121', '1', '登录成功', '0', '2021-03-13 10:29:08', '0', null, null);
 
 -- ----------------------------
 -- Table structure for t_sys_menu
@@ -891,74 +945,3 @@ INSERT INTO `t_sys_user_role` VALUES ('5341047516725520', '5340056513364240', '5
 INSERT INTO `t_sys_user_role` VALUES ('5341047946166544', '5332937727967504', '5332894561632528', '0', '2021-03-04 10:57:51', '5332937727967504', null, null);
 INSERT INTO `t_sys_user_role` VALUES ('5341095758135568', '5340056513364240', '5341094230753552', '1', '2021-03-04 11:46:29', '5332937727967504', null, null);
 INSERT INTO `t_sys_user_role` VALUES ('5341280805749008', '5340056513364240', '5341094230753552', '0', '2021-03-04 14:54:43', '5332937727967504', null, null);
-
--- ----------------------------
--- Table structure for t_wish_apply
--- ----------------------------
-DROP TABLE IF EXISTS `t_wish_apply`;
-CREATE TABLE `t_wish_apply` (
-  `id` bigint(20) unsigned NOT NULL COMMENT 'ID',
-  `name` varchar(100) NOT NULL COMMENT '姓名',
-  `mobile` char(11) NOT NULL COMMENT '常用手机号码',
-  `wechat` varchar(50) NOT NULL COMMENT '微信',
-  `copywriting` varchar(255) DEFAULT NULL COMMENT '视频文案',
-  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
-  `is_deleted` tinyint(1) unsigned NOT NULL COMMENT '刪除标识',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
-  `create_by` bigint(20) unsigned NOT NULL COMMENT '创建人',
-  `update_time` datetime DEFAULT NULL COMMENT '修改时间',
-  `update_by` bigint(20) unsigned DEFAULT NULL COMMENT '修改人',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='APP用户服务申请';
-
--- ----------------------------
--- Records of t_wish_apply
--- ----------------------------
-
--- ----------------------------
--- Table structure for t_wish_star
--- ----------------------------
-DROP TABLE IF EXISTS `t_wish_star`;
-CREATE TABLE `t_wish_star` (
-  `id` bigint(20) unsigned NOT NULL COMMENT 'ID',
-  `photo` varchar(255) NOT NULL COMMENT '照片',
-  `name` varchar(100) NOT NULL COMMENT '姓名',
-  `intro` varchar(1024) NOT NULL COMMENT '简介',
-  `state` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '启用状态',
-  `is_deleted` tinyint(1) unsigned NOT NULL COMMENT '刪除标识',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
-  `create_by` bigint(20) unsigned NOT NULL COMMENT '创建人',
-  `update_time` datetime DEFAULT NULL COMMENT '修改时间',
-  `update_by` bigint(20) unsigned DEFAULT NULL COMMENT '修改人',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='wish入驻明星';
-
--- ----------------------------
--- Records of t_wish_star
--- ----------------------------
-
--- ----------------------------
--- Table structure for t_app_user
--- ----------------------------
-DROP TABLE IF EXISTS `t_app_user`;
-CREATE TABLE `t_app_user` (
-  `id` bigint(20) unsigned NOT NULL COMMENT 'ID',
-  `nickname` varchar(100) DEFAULT NULL COMMENT '昵称',
-  `mobile` char(11) DEFAULT NULL COMMENT '手机',
-  `avatar` varchar(255) DEFAULT NULL COMMENT '个性头像',
-  `sex` char(1) DEFAULT NULL COMMENT '性别',
-  `birth` date DEFAULT NULL COMMENT '生日',
-  `state` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '启用状态',
-  `open_id` varchar(100) DEFAULT NULL COMMENT '微信开放ID',
-  `is_deleted` tinyint(1) unsigned NOT NULL COMMENT '刪除标识',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
-  `create_by` bigint(20) unsigned NOT NULL COMMENT '创建人',
-  `update_time` datetime DEFAULT NULL COMMENT '修改时间',
-  `update_by` bigint(20) unsigned DEFAULT NULL COMMENT '修改人',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='APP用户';
-
--- ----------------------------
--- Records of t_app_user
--- ----------------------------
-INSERT INTO `t_app_user` VALUES ('5343949279904016', null, '18516246325', 'http://qp2g29tsi.hd-bkt.clouddn.com/20210302/2feb620f55c5415fa24251c9bc19c0ca.', null, null, '1', '123456', '0', '2021-03-06 12:09:14', '0', null, null);
