@@ -909,7 +909,7 @@ CREATE TABLE `t_wish_apply` (
   `update_time` datetime DEFAULT NULL COMMENT '修改时间',
   `update_by` bigint(20) unsigned DEFAULT NULL COMMENT '修改人',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='wish用户服务申请';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='APP用户服务申请';
 
 -- ----------------------------
 -- Records of t_wish_apply
