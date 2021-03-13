@@ -41,6 +41,7 @@
     <modules>
         <module>lazyman-common</module>
         <module>lazyman-core</module>
+        <module>lazyman-starter-activiti</module>
         <module>lazyman-starter-mongodb</module>
         <module>lazyman-starter-oss</module>
         <module>lazyman-starter-pay</module>
