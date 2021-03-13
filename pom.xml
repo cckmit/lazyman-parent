@@ -49,7 +49,7 @@
         <module>lazyman-starter-redisson</module>
         <module>lazyman-starter-xxljob</module>
         <module>lazyman-domain</module>
-        <module>lazyman-web</module>
+        <module>lazyman-webapi</module>
     </modules>
 
     <dependencyManagement>
