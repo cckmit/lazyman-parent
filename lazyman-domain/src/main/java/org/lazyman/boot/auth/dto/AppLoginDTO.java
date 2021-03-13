@@ -7,7 +7,7 @@ import org.lazyman.core.base.dto.BaseDTO;
 
 import javax.validation.constraints.NotBlank;
 
-@ApiModel(value = "wish买家登录参数对象")
+@ApiModel(value = "APP用户登录参数对象")
 @Data
 public class AppLoginDTO extends BaseDTO {
     @ApiModelProperty(value = "手机号码", required = true)

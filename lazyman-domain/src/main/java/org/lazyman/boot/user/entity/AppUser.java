@@ -1,15 +1,27 @@
-package org.lazyman.boot.wish.dto;
+package org.lazyman.boot.user.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.lazyman.core.base.dto.BaseQueryDTO;
+import lombok.EqualsAndHashCode;
+import org.lazyman.core.base.entity.BaseEntity;
 
 import java.util.Date;
 
-@ApiModel(value = "wish买家查询参数对象")
+/**
+ * <p>
+ * APP用户
+ * </p>
+ *
+ * @author wanglong
+ * @since 2021-03-06
+ */
 @Data
-public class WishUserQueryDTO extends BaseQueryDTO {
+@EqualsAndHashCode(callSuper = true)
+@TableName("t_app_user")
+@ApiModel(value = "APP用户实体")
+public class AppUser extends BaseEntity {
 
     @ApiModelProperty(value = "昵称")
     private String nickname;
@@ -28,6 +40,9 @@ public class WishUserQueryDTO extends BaseQueryDTO {
 
     @ApiModelProperty(value = "启用状态")
     private Boolean state;
+
+    @ApiModelProperty(value = "微信统一ID")
+    private String unionId;
 
     @ApiModelProperty(value = "微信开放ID")
     private String openId;

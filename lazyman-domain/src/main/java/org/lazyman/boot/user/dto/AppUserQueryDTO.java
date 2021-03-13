@@ -1,15 +1,15 @@
-package org.lazyman.boot.wish.dto;
+package org.lazyman.boot.user.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.lazyman.core.base.dto.BaseDTO;
+import org.lazyman.core.base.dto.BaseQueryDTO;
 
 import java.util.Date;
 
-@ApiModel(value = "wish买家表单参数对象")
+@ApiModel(value = "APP用户查询参数对象")
 @Data
-public class WishUserFormDTO extends BaseDTO {
+public class AppUserQueryDTO extends BaseQueryDTO {
 
     @ApiModelProperty(value = "昵称")
     private String nickname;
@@ -28,6 +28,9 @@ public class WishUserFormDTO extends BaseDTO {
 
     @ApiModelProperty(value = "启用状态")
     private Boolean state;
+
+    @ApiModelProperty(value = "微信统一ID")
+    private String unionId;
 
     @ApiModelProperty(value = "微信开放ID")
     private String openId;

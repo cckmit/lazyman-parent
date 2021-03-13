@@ -940,7 +940,7 @@ CREATE TABLE `t_wish_star` (
 -- ----------------------------
 -- Table structure for t_wish_user
 -- ----------------------------
-DROP TABLE IF EXISTS `t_wish_user`;
+DROP TABLE IF EXISTS `t_app_user`;
 CREATE TABLE `t_wish_user` (
   `id` bigint(20) unsigned NOT NULL COMMENT 'ID',
   `nickname` varchar(100) DEFAULT NULL COMMENT '昵称',
@@ -956,9 +956,9 @@ CREATE TABLE `t_wish_user` (
   `update_time` datetime DEFAULT NULL COMMENT '修改时间',
   `update_by` bigint(20) unsigned DEFAULT NULL COMMENT '修改人',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='wish买家';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='APP用户';
 
 -- ----------------------------
 -- Records of t_wish_user
 -- ----------------------------
-INSERT INTO `t_wish_user` VALUES ('5343949279904016', null, '18516246325', 'http://qp2g29tsi.hd-bkt.clouddn.com/20210302/2feb620f55c5415fa24251c9bc19c0ca.', null, null, '1', '123456', '0', '2021-03-06 12:09:14', '0', null, null);
+INSERT INTO `t_app_user` VALUES ('5343949279904016', null, '18516246325', 'http://qp2g29tsi.hd-bkt.clouddn.com/20210302/2feb620f55c5415fa24251c9bc19c0ca.', null, null, '1', '123456', '0', '2021-03-06 12:09:14', '0', null, null);

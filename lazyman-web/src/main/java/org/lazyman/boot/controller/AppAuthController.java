@@ -6,8 +6,8 @@ import io.swagger.annotations.ApiParam;
 import org.lazyman.boot.auth.dto.AppLoginDTO;
 import org.lazyman.boot.auth.service.IAuthService;
 import org.lazyman.boot.auth.vo.LoginVO;
-import org.lazyman.boot.wish.service.IWishUserService;
-import org.lazyman.boot.wish.vo.WishUserVO;
+import org.lazyman.boot.user.service.IAppUserService;
+import org.lazyman.boot.user.vo.AppUserVO;
 import org.lazyman.common.util.ThreadLocalUtils;
 import org.lazyman.core.base.vo.ResultVO;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class AppAuthController {
     @Resource
     private IAuthService iAuthService;
     @Resource
-    private IWishUserService iWishUserService;
+    private IAppUserService iAppUserService;
 
     @ApiOperation(value = "发送短信验证码")
     @PostMapping("/auth/sms")
@@ -70,7 +70,7 @@ public class AppAuthController {
 
     @ApiOperation(value = "获取App当前登录用户信息")
     @GetMapping("/userInfo")
-    public ResultVO<WishUserVO> getAppUserInfo() {
-        return ResultVO.ok(iWishUserService.getDetail(ThreadLocalUtils.getCurrentUserId()));
+    public ResultVO<AppUserVO> getAppUserInfo() {
+        return ResultVO.ok(iAppUserService.getDetail(ThreadLocalUtils.getCurrentUserId()));
     }
 }

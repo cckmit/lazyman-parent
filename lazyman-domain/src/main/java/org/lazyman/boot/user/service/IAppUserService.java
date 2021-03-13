@@ -1,37 +1,37 @@
-package org.lazyman.boot.wish.service;
+package org.lazyman.boot.user.service;
 
-import org.lazyman.boot.wish.dto.WishUserFormDTO;
-import org.lazyman.boot.wish.dto.WishUserQueryDTO;
-import org.lazyman.boot.wish.entity.WishUser;
-import org.lazyman.boot.wish.vo.WishUserVO;
+import org.lazyman.boot.user.dto.AppUserFormDTO;
+import org.lazyman.boot.user.dto.AppUserQueryDTO;
+import org.lazyman.boot.user.entity.AppUser;
+import org.lazyman.boot.user.vo.AppUserVO;
 import org.lazyman.core.base.dto.StateActionDTO;
 import org.lazyman.core.base.service.BaseService;
 import org.lazyman.core.base.vo.PageVO;
 
 /**
  * <p>
- * wish买家 服务类
+ * APP用户 服务类
  * </p>
  *
  * @author wanglong
  * @since 2021-03-06
  */
-public interface IWishUserService extends BaseService<WishUser> {
+public interface IAppUserService extends BaseService<AppUser> {
     /**
      * 通过ID检查是否存在
      *
      * @param id
      * @return
      */
-    WishUser existsById(Long id);
+    AppUser existsById(Long id);
 
     /**
      * 编辑
      *
-     * @param wishBuyerFormDTO
+     * @param appBuyerFormDTO
      * @return
      */
-    Boolean edit(WishUserFormDTO wishBuyerFormDTO);
+    Boolean edit(AppUserFormDTO appBuyerFormDTO);
 
     /**
      * 根据ID查询详情
@@ -39,15 +39,15 @@ public interface IWishUserService extends BaseService<WishUser> {
      * @param id
      * @return
      */
-    WishUserVO getDetail(Long id);
+    AppUserVO getDetail(Long id);
 
     /**
      * 分页查询
      *
-     * @param wishBuyerQueryDTO
+     * @param appBuyerQueryDTO
      * @return
      */
-    PageVO<WishUserVO> listByPage(WishUserQueryDTO wishBuyerQueryDTO);
+    PageVO<AppUserVO> listByPage(AppUserQueryDTO appBuyerQueryDTO);
 
 
     /**

@@ -20,8 +20,8 @@ import org.lazyman.boot.sys.service.ISysLoginLogService;
 import org.lazyman.boot.sys.service.ISysUserService;
 import org.lazyman.boot.sys.vo.SysMenuVO;
 import org.lazyman.boot.sys.vo.SysRoleVO;
-import org.lazyman.boot.wish.entity.WishUser;
-import org.lazyman.boot.wish.service.IWishUserService;
+import org.lazyman.boot.user.entity.AppUser;
+import org.lazyman.boot.user.service.IAppUserService;
 import org.lazyman.common.constant.CommonErrCode;
 import org.lazyman.common.exception.BizException;
 import org.lazyman.common.util.ClientFrom;
@@ -63,7 +63,7 @@ public class AuthServiceImpl implements IAuthService {
     @Resource
     private ISmsTaskService iSmsTaskService;
     @Resource
-    private IWishUserService iWishUserService;
+    private IAppUserService iAppUserService;
 
     @Override
     public boolean preAuth(String accessToken) {
@@ -220,33 +220,33 @@ public class AuthServiceImpl implements IAuthService {
 
     @Override
     public LoginVO loginApp(AppLoginDTO appLoginDTO) {
-        WishUser wishBuyer = iWishUserService.getOne(Wrappers.<WishUser>query().lambda().eq(StrUtil.isNotBlank(appLoginDTO.getMobile()), WishUser::getMobile, appLoginDTO.getMobile())
-                .eq(StrUtil.isNotBlank(appLoginDTO.getOpenId()), WishUser::getOpenId, appLoginDTO.getOpenId()));
-        if (ObjectUtil.isEmpty(wishBuyer)) {
-            wishBuyer = new WishUser();
-            wishBuyer.setMobile(appLoginDTO.getMobile());
-            wishBuyer.setOpenId(appLoginDTO.getOpenId());
-            iWishUserService.save(wishBuyer);
+        AppUser appBuyer = iAppUserService.getOne(Wrappers.<AppUser>query().lambda().eq(StrUtil.isNotBlank(appLoginDTO.getMobile()), AppUser::getMobile, appLoginDTO.getMobile())
+                .eq(StrUtil.isNotBlank(appLoginDTO.getOpenId()), AppUser::getOpenId, appLoginDTO.getOpenId()));
+        if (ObjectUtil.isEmpty(appBuyer)) {
+            appBuyer = new AppUser();
+            appBuyer.setMobile(appLoginDTO.getMobile());
+            appBuyer.setOpenId(appLoginDTO.getOpenId());
+            iAppUserService.save(appBuyer);
         }
-        String token = JWTUtils.sign(wishBuyer.getId(), jwtTokenProperties.getSecretKey());
-        String tokenKey = LazymanConstant.RedisKey.AUTH_USER_PREFIX + wishBuyer.getId();
+        String token = JWTUtils.sign(appBuyer.getId(), jwtTokenProperties.getSecretKey());
+        String tokenKey = LazymanConstant.RedisKey.AUTH_USER_PREFIX + appBuyer.getId();
         redissonTemplate.set(tokenKey, token, jwtTokenProperties.getAppExpireSeconds(), TimeUnit.SECONDS);
         LoginVO loginVO = new LoginVO();
         loginVO.setToken(token);
         loginVO.setExpireIn(jwtTokenProperties.getAppExpireSeconds());
-        loginVO.setIsBindMobile(StrUtil.isBlank(wishBuyer.getMobile()) ? true : false);
+        loginVO.setIsBindMobile(StrUtil.isBlank(appBuyer.getMobile()) ? true : false);
         return loginVO;
     }
 
     @Override
     public Boolean bindAppMobile(AppLoginDTO appLoginDTO) {
-        WishUser wishBuyer = iWishUserService.getOne(Wrappers.<WishUser>query().lambda().eq(WishUser::getMobile, appLoginDTO.getMobile()));
-        if (ObjectUtil.isNotEmpty(wishBuyer)) {
+        AppUser appBuyer = iAppUserService.getOne(Wrappers.<AppUser>query().lambda().eq(AppUser::getMobile, appLoginDTO.getMobile()));
+        if (ObjectUtil.isNotEmpty(appBuyer)) {
             throw new BizException(LazymanErrCode.MOBILE_EXISTS);
         }
-        return iWishUserService.updateByWrapper(Wrappers.<WishUser>update().lambda().eq(WishUser::getId, appLoginDTO.getId())
+        return iAppUserService.updateByWrapper(Wrappers.<AppUser>update().lambda().eq(AppUser::getId, appLoginDTO.getId())
                 .set(
-                        WishUser::getMobile, appLoginDTO.getMobile()
+                        AppUser::getMobile, appLoginDTO.getMobile()
                 ));
     }
 }
