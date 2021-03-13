@@ -12,9 +12,9 @@ import java.net.UnknownHostException;
 
 @SpringBootApplication
 @Slf4j
-public class LazymanApplication {
+public class LazymanWebapiApplication {
     public static void main(String[] args) throws UnknownHostException {
-        ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(LazymanApplication.class, args);
+        ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(LazymanWebapiApplication.class, args);
         Environment env = configurableApplicationContext.getEnvironment();
         String ip = InetAddress.getLocalHost().getHostAddress();
         String port = env.getProperty("server.port");
