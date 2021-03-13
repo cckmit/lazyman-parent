@@ -9,7 +9,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class AlertMessageBO implements Serializable {
+public class AlertMessage implements Serializable {
     private String moduleName;
     private String errCode;
     private String errMsg;

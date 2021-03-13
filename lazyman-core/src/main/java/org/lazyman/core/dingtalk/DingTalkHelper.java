@@ -31,12 +31,12 @@ public class DingTalkHelper {
         if (!dingTalkProperties.getAlertSwitch()) {
             return;
         }
-        redissonTemplate.convertAndSend(RedisQueue.QUEUE_DINGTALK_SEND, new AlertMessageBO(moduleName, errCode, errMsg));
+        redissonTemplate.convertAndSend(RedisQueue.QUEUE_DINGTALK_SEND, new AlertMessage(moduleName, errCode, errMsg));
     }
 
-    public void handlerAlterMsg(AlertMessageBO alertMessageBO) {
+    public void handlerAlterMsg(AlertMessage alertMessage) {
         try {
-            String content = String.format(dingTalkProperties.getAlertMsgTpl(), alertMessageBO.getModuleName(), alertMessageBO.getErrCode(), alertMessageBO.getErrMsg());
+            String content = String.format(dingTalkProperties.getAlertMsgTpl(), alertMessage.getModuleName(), alertMessage.getErrCode(), alertMessage.getErrMsg());
             //消息内容
             Map<String, Object> contentMap = Maps.newHashMap();
             contentMap.put("content", content);

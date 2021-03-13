@@ -1,0 +1,78 @@
+logging:
+  level:
+    root: INFO
+
+dingtalk:
+  api:
+    alertSwitch: false
+    url: https://oapi.dingtalk.com/robot/send?access_token=e765e4a16f04913cd55d0d3e6a411e428b58dd5c463c8a2bc3578755f8f88261
+    alertMsgTpl: 系统预警,%s,错误码：%s,错误消息：%s
+
+jwt:
+  token:
+    secretKey: qwerty123456
+    webExpireSeconds: 3600
+    appExpireSeconds: 604800
+
+oss:
+  name: qiniu
+  tenantMode: false
+  endpoint: http://qp2g29tsi.hd-bkt.clouddn.com
+  accessKey: nk8j1PMLMNeuFgo16nc0in-FPzr1UXPfcO2gaYo8
+  secretKey: X2yHy_GI2NRzJFZtWF6Od6qmhQVT9H-qZjFtSSwl
+  bucketName: lazyman-test
+  region:
+
+alipay:
+  api:
+    alipayPubKey: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNN1PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5KsiNG9zpgmLCUYuLkxpLQIDAQAB
+    gateway: https://mapi.alipay.com/gateway.do
+    notifyUrl: http://test-api.dotsign.cn/spi/alipay_notify
+    partner: 2088621522702393
+    priKey: MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAMGohUVfLJZmKsxrfGlnjukgsb/BPR0TFRcdMz3VGQZqghN4vGdXmJc6LU7jH/3F7JPFierqHmZwn1/agPaOotgt4IES0wAWAE4oPaWra0DSa8kQBS6X9uiQNSX+CGYHSfCqAtDKHZNoMAWUUZa0kQIjUvpifsugpxqQqAe37jopAgMBAAECgYB3yBxmhC+39wmR1wnkyEEEwUwwJv399cedvFntbNlFtqsuEAe4g93F7B4KJUGsXbeuzwg3XQfgpNhvGV+bIS5nI/ihqaGhWblnCAicAD43NQ9AB1m59EFGqGu6GzmDWJ4ByOBhW7qkPnc1fnheId4+xQdpW95KEJb+q9l+9x104QJBAPBpYKeHA+3RLk77gZBfwsby33X//NOP6/SCrPuq/YIb/vsctzXBSl90tnInXIGpGCUC/bnmbhx7Bp9RM+xRQX8CQQDONxQTxSu6ezUPKy2ZPMF46jQU1KIxj+RYsEjEMuB/tuWQkkSmUkgrEMTd3xIRySQ5yhx3o/+m0wKySRE6OwhXAkBqpkSzbMjIakCB1z7N3j1Y5otNHId7DuCcso+sgVk+q868dSutVBb7K5p4H5ABERNd7+rA2kFEryrr6CkBj7ZfAkAdoybcjIrzWz/N9UuxaVz5Dtf7YnAJJYARCwz6PcGsOVIXDB6XtN2watGQfb3wFnOBZr3eqBBXHp6VlxDFyLQzAkEAyC/IUW67tGTGudlEk1mbfVf/6fco4NCR34o1N1scXxG0WY4O4Q3yZiDcyjOv+giEwYL9avCBCO2DrMBwf+v5KQ==
+    returnUrl: http://test-console.dotsign.cn/#/account/recharge
+
+wepay:
+  api:
+    gateway: https://api.mch.weixin.qq.com/pay/unifiedorder
+    appId: wxc335b2ca23aa9f9a
+    mchId: 1483845732
+    signKey: 0c2192a8b4184c48a2d961d028770e66
+    priKey: http://test-api.dotsign.cn/spi/wepay_notify
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://172.22.27.135:3306/lazyman?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: lazyman
+    password: Jiayou2020*
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      pool-name: HikariCP
+      minimum-idle: 10
+      maximum-pool-size: 100
+      max-lifetime: 900000
+      idle-timeout: 300000
+      connection-timeout: 10000
+      validation-timeout: 5000
+      connection-test-query: SELECT 1
+      auto-commit: false
+
+redisson:
+  enable: true
+  mode: standalone
+  serverAddrs: 172.22.27.135:6379
+  password:
+  timeout: 5000
+
+xxl:
+  job:
+    enable: false
+    adminAddresses: http://172.22.27.138:7080
+    accessToken:
+    executorAppname: ${spring.application.name}
+    executorAddress:
+    executorIp:
+    executorPort: 1${server.port}
+    executorLogPath: /opt/logs/xxl-job/${spring.application.name}/jobhandler
+    executorLogRetentionDays: 30

@@ -1,9 +1,10 @@
 logging:
   level:
-    root: INFO
+    root: DEBUG
 
 dingtalk:
   api:
+    alertSwitch: false
     url: https://oapi.dingtalk.com/robot/send?access_token=e765e4a16f04913cd55d0d3e6a411e428b58dd5c463c8a2bc3578755f8f88261
     alertMsgTpl: 系统预警,%s,错误码：%s,错误消息：%s
 
