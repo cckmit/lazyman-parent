@@ -10,7 +10,6 @@ import org.lazyman.boot.wish.service.IWishUserService;
 import org.lazyman.boot.wish.vo.WishUserVO;
 import org.lazyman.common.util.ThreadLocalUtils;
 import org.lazyman.core.base.vo.ResultVO;
-import org.lazyman.starter.redisson.annotation.RequireRateLimit;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -35,7 +34,6 @@ public class AppAuthController {
 
     @ApiOperation(value = "发送短信验证码")
     @PostMapping("/auth/sms")
-    @RequireRateLimit(timeWindow = 60 * 1000, count = 1)
     public ResultVO<Boolean> sendSmsVerifyCode(@ApiParam(value = "手机号", required = true) @RequestParam("mobile") String mobile) {
         iAuthService.sendSmsVerifyCode(mobile);
         return ResultVO.ok(true);

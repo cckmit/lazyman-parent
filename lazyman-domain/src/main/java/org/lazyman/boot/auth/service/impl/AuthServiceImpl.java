@@ -22,6 +22,7 @@ import org.lazyman.boot.sys.vo.SysMenuVO;
 import org.lazyman.boot.sys.vo.SysRoleVO;
 import org.lazyman.boot.wish.entity.WishUser;
 import org.lazyman.boot.wish.service.IWishUserService;
+import org.lazyman.common.constant.CommonErrCode;
 import org.lazyman.common.exception.BizException;
 import org.lazyman.common.util.ClientFrom;
 import org.lazyman.common.util.JWTUtils;
@@ -30,6 +31,8 @@ import org.lazyman.common.util.WebUtils;
 import org.lazyman.core.config.JwtTokenProperties;
 import org.lazyman.core.permission.Logical;
 import org.lazyman.starter.redisson.RedissonTemplate;
+import org.lazyman.starter.redisson.constant.RedisConstant;
+import org.redisson.api.RateIntervalUnit;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -184,6 +187,10 @@ public class AuthServiceImpl implements IAuthService {
 
     @Override
     public void sendSmsVerifyCode(String mobile) {
+        boolean result = redissonTemplate.tryRateLimiterAcquire(RedisConstant.RATELIMITER_PREFIX + mobile, 1, 60, RateIntervalUnit.SECONDS);
+        if (!result) {
+            throw new BizException(CommonErrCode.REQUEST_FREQUENTLY);
+        }
         String verifyCode = String.valueOf(new Random().nextInt(900000) + 100000);
         SmsTaskFormDTO smsTaskFormDTO = new SmsTaskFormDTO();
         smsTaskFormDTO.setMobiles(mobile);
@@ -208,6 +215,7 @@ public class AuthServiceImpl implements IAuthService {
             throw new BizException(LazymanErrCode.SMS_VERIFYCODE_ERROR);
         }
         redissonTemplate.delete(key);
+        redissonTemplate.deleteRateLimiter(RedisConstant.RATELIMITER_PREFIX + mobile);
     }
 
     @Override
