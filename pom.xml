@@ -38,7 +38,7 @@
 
     <modules>
         <module>lazyman-common</module>
-        <module>lazyman-core</module>
+        <module>lazyman-starter-boot</module>
         <module>lazyman-starter-activiti</module>
         <module>lazyman-starter-mongodb</module>
         <module>lazyman-starter-oss</module>
@@ -47,7 +47,7 @@
         <module>lazyman-starter-redisson</module>
         <module>lazyman-starter-xxljob</module>
         <module>lazyman-domain</module>
-        <module>lazyman-webapi</module>
+        <module>lazyman-web</module>
     </modules>
 
     <dependencyManagement>
