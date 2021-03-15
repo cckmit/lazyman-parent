@@ -8,10 +8,10 @@ import org.lazyman.boot.sys.dto.SysRoleFormDTO;
 import org.lazyman.boot.sys.dto.SysRoleQueryDTO;
 import org.lazyman.boot.sys.service.ISysRoleService;
 import org.lazyman.boot.sys.vo.SysRoleVO;
-import org.lazyman.core.base.controller.BaseController;
-import org.lazyman.core.base.dto.StateActionDTO;
-import org.lazyman.core.base.vo.PageVO;
-import org.lazyman.core.base.vo.ResultVO;
+import org.lazyman.boot.base.controller.BaseController;
+import org.lazyman.boot.base.dto.StateActionDTO;
+import org.lazyman.boot.base.vo.PageVO;
+import org.lazyman.boot.base.vo.ResultVO;
 import org.lazyman.starter.redisson.annotation.Idempotency;
 import org.springframework.web.bind.annotation.*;
 

@@ -14,9 +14,9 @@ import org.lazyman.boot.user.service.IAppUserService;
 import org.lazyman.boot.user.vo.AppUserVO;
 import org.lazyman.common.constant.CommonErrCode;
 import org.lazyman.common.exception.BizException;
-import org.lazyman.core.base.dto.StateActionDTO;
-import org.lazyman.core.base.service.impl.BaseServiceImpl;
-import org.lazyman.core.base.vo.PageVO;
+import org.lazyman.boot.base.dto.StateActionDTO;
+import org.lazyman.boot.base.service.impl.BaseServiceImpl;
+import org.lazyman.boot.base.vo.PageVO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -148,12 +148,12 @@ public class Generator {
     }
 
     public static void main(String[] args) {
-        String tableName = "t_sys_user_equipment";
+        String tableName = "t_app_user";
         String moduleName = "sys";
         boolean isTenantMode = false;
-        boolean isSimpleMode = true;
-        boolean isOutputSelectOption = false;
-        boolean isOutputStateAction = false;
+        boolean isSimpleMode = false;
+        boolean isOutputSelectOption = true;
+        boolean isOutputStateAction = true;
         boolean isOutputTreeAction = false;
         Generator generator = new Generator();
         generator.generate(tableName, moduleName, isSimpleMode, isTenantMode, isOutputSelectOption, isOutputStateAction, isOutputTreeAction);

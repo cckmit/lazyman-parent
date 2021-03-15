@@ -3,7 +3,7 @@ package org.lazyman.boot.sys.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.lazyman.core.base.vo.BaseVO;
+import org.lazyman.boot.base.vo.BaseVO;
 
 @Data
 @ApiModel(value = "系统角色返回对象")

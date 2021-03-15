@@ -7,7 +7,7 @@ import org.lazyman.boot.sys.entity.SysUserPost;
 import org.lazyman.boot.sys.mapper.SysUserPostMapper;
 import org.lazyman.boot.sys.service.ISysPostService;
 import org.lazyman.boot.sys.service.ISysUserPostService;
-import org.lazyman.core.base.service.impl.BaseServiceImpl;
+import org.lazyman.boot.base.service.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

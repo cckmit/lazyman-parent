@@ -8,10 +8,7 @@ import ${cfg.parent}.dto.${entity}QueryDTO;
 import ${cfg.parent}.vo.${entity}TreeVO;
 #end
 #if(${cfg.isOutputStateAction})
-import org.lazyman.core.base.dto.StateActionDTO;
 #end
-import org.lazyman.core.base.vo.PageVO;
-import java.util.List;
 import ${superServiceClassPackage};
 
 /**

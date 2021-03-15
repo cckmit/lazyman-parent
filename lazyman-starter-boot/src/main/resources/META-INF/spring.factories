@@ -1,9 +1,9 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  org.lazyman.core.config.GlobalAutoConfig,\
-  org.lazyman.core.config.Swagger2AutoConfig,\
-  org.lazyman.core.config.RestClientAutoConfig,\
-  org.lazyman.core.config.AsyncAutoConfig,\
-  org.lazyman.core.config.JwtTokenAutoConfig,\
-  org.lazyman.core.config.WechatAuthAutoConfig,\
-  org.lazyman.core.config.DingTalkAutoConfig,\
-  org.lazyman.core.config.MybatisPlusAutoConfig
+  org.lazyman.boot.config.GlobalAutoConfig,\
+  org.lazyman.boot.config.Swagger2AutoConfig,\
+  org.lazyman.boot.config.RestClientAutoConfig,\
+  org.lazyman.boot.config.AsyncAutoConfig,\
+  org.lazyman.boot.config.JwtTokenAutoConfig,\
+  org.lazyman.boot.config.WechatAuthAutoConfig,\
+  org.lazyman.boot.config.DingTalkAutoConfig,\
+  org.lazyman.boot.config.MybatisPlusAutoConfig

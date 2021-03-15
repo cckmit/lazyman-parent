@@ -9,7 +9,7 @@ import org.lazyman.boot.auth.vo.LoginVO;
 import org.lazyman.boot.user.service.IAppUserService;
 import org.lazyman.boot.user.vo.AppUserVO;
 import org.lazyman.common.util.ThreadLocalUtils;
-import org.lazyman.core.base.vo.ResultVO;
+import org.lazyman.boot.base.vo.ResultVO;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

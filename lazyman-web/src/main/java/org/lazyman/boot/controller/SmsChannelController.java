@@ -7,10 +7,10 @@ import org.lazyman.boot.sms.dto.SmsChannelFormDTO;
 import org.lazyman.boot.sms.dto.SmsChannelQueryDTO;
 import org.lazyman.boot.sms.service.ISmsChannelService;
 import org.lazyman.boot.sms.vo.SmsChannelVO;
-import org.lazyman.core.base.controller.BaseController;
-import org.lazyman.core.base.dto.StateActionDTO;
-import org.lazyman.core.base.vo.PageVO;
-import org.lazyman.core.base.vo.ResultVO;
+import org.lazyman.boot.base.controller.BaseController;
+import org.lazyman.boot.base.dto.StateActionDTO;
+import org.lazyman.boot.base.vo.PageVO;
+import org.lazyman.boot.base.vo.ResultVO;
 import org.lazyman.starter.redisson.annotation.Idempotency;
 import org.springframework.web.bind.annotation.*;
 

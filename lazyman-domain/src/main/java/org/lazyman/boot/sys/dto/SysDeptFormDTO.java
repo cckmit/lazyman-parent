@@ -3,7 +3,7 @@ package org.lazyman.boot.sys.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.lazyman.core.base.dto.BaseDTO;
+import org.lazyman.boot.base.dto.BaseDTO;
 @ApiModel(value="系统部门表单参数对象")
 @Data
 public class SysDeptFormDTO extends BaseDTO {

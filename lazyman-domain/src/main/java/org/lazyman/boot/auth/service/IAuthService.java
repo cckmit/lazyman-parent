@@ -3,7 +3,7 @@ package org.lazyman.boot.auth.service;
 import org.lazyman.boot.auth.dto.AppLoginDTO;
 import org.lazyman.boot.auth.dto.WebLoginDTO;
 import org.lazyman.boot.auth.vo.LoginVO;
-import org.lazyman.core.permission.Logical;
+import org.lazyman.boot.permission.Logical;
 
 /**
  * <p>

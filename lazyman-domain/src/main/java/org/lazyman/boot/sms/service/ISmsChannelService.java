@@ -4,10 +4,10 @@ import org.lazyman.boot.sms.entity.SmsChannel;
 import org.lazyman.boot.sms.dto.SmsChannelFormDTO;
 import org.lazyman.boot.sms.vo.SmsChannelVO;
 import org.lazyman.boot.sms.dto.SmsChannelQueryDTO;
-import org.lazyman.core.base.dto.StateActionDTO;
-import org.lazyman.core.base.vo.PageVO;
+import org.lazyman.boot.base.dto.StateActionDTO;
+import org.lazyman.boot.base.vo.PageVO;
 import java.util.List;
-import org.lazyman.core.base.service.BaseService;
+import org.lazyman.boot.base.service.BaseService;
 
 /**
  * <p>

@@ -5,10 +5,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 #end
 #if(${entityLombokModel})
-import java.util.Date;
 import lombok.Data;
 #end
-import org.lazyman.core.base.dto.BaseQueryDTO;
+import org.lazyman.boot.base.dto.BaseQueryDTO;
 #if(${swagger2})
 @ApiModel(value="${table.comment}查询参数对象")
 #end

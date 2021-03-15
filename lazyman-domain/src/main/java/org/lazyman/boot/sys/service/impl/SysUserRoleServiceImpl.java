@@ -7,7 +7,7 @@ import org.lazyman.boot.sys.entity.SysUserRole;
 import org.lazyman.boot.sys.mapper.SysUserRoleMapper;
 import org.lazyman.boot.sys.service.ISysRoleService;
 import org.lazyman.boot.sys.service.ISysUserRoleService;
-import org.lazyman.core.base.service.impl.BaseServiceImpl;
+import org.lazyman.boot.base.service.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

@@ -12,8 +12,8 @@ import org.lazyman.boot.sys.mapper.SysLoginLogMapper;
 import org.lazyman.boot.sys.service.ISysLoginLogService;
 import org.lazyman.boot.sys.vo.SysLoginLogVO;
 import org.lazyman.common.util.WebUtils;
-import org.lazyman.core.base.service.impl.BaseServiceImpl;
-import org.lazyman.core.base.vo.PageVO;
+import org.lazyman.boot.base.service.impl.BaseServiceImpl;
+import org.lazyman.boot.base.vo.PageVO;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;

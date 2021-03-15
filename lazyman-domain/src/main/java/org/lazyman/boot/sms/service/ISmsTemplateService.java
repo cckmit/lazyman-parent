@@ -4,9 +4,9 @@ import org.lazyman.boot.sms.dto.SmsTemplateFormDTO;
 import org.lazyman.boot.sms.dto.SmsTemplateQueryDTO;
 import org.lazyman.boot.sms.entity.SmsTemplate;
 import org.lazyman.boot.sms.vo.SmsTemplateVO;
-import org.lazyman.core.base.dto.StateActionDTO;
-import org.lazyman.core.base.service.BaseService;
-import org.lazyman.core.base.vo.PageVO;
+import org.lazyman.boot.base.dto.StateActionDTO;
+import org.lazyman.boot.base.service.BaseService;
+import org.lazyman.boot.base.vo.PageVO;
 
 import java.util.List;
 

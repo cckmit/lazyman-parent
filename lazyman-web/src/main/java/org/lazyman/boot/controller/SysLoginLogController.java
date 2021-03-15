@@ -6,9 +6,9 @@ import io.swagger.annotations.ApiParam;
 import org.lazyman.boot.sys.dto.SysLoginLogQueryDTO;
 import org.lazyman.boot.sys.service.ISysLoginLogService;
 import org.lazyman.boot.sys.vo.SysLoginLogVO;
-import org.lazyman.core.base.controller.BaseController;
-import org.lazyman.core.base.vo.PageVO;
-import org.lazyman.core.base.vo.ResultVO;
+import org.lazyman.boot.base.controller.BaseController;
+import org.lazyman.boot.base.vo.PageVO;
+import org.lazyman.boot.base.vo.ResultVO;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

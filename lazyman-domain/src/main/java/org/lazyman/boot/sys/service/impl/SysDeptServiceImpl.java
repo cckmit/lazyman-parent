@@ -17,10 +17,10 @@ import org.lazyman.boot.sys.vo.SysDeptVO;
 import org.lazyman.boot.sys.vo.VueElTreeVO;
 import org.lazyman.common.constant.CommonErrCode;
 import org.lazyman.common.exception.BizException;
-import org.lazyman.core.wrapper.Wrapper;
-import org.lazyman.core.base.dto.StateActionDTO;
-import org.lazyman.core.base.service.impl.BaseServiceImpl;
-import org.lazyman.core.base.vo.PageVO;
+import org.lazyman.boot.wrapper.Wrapper;
+import org.lazyman.boot.base.dto.StateActionDTO;
+import org.lazyman.boot.base.service.impl.BaseServiceImpl;
+import org.lazyman.boot.base.vo.PageVO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

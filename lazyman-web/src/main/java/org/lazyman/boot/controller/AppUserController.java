@@ -7,10 +7,10 @@ import org.lazyman.boot.user.dto.AppUserFormDTO;
 import org.lazyman.boot.user.dto.AppUserQueryDTO;
 import org.lazyman.boot.user.service.IAppUserService;
 import org.lazyman.boot.user.vo.AppUserVO;
-import org.lazyman.core.base.controller.BaseController;
-import org.lazyman.core.base.dto.StateActionDTO;
-import org.lazyman.core.base.vo.PageVO;
-import org.lazyman.core.base.vo.ResultVO;
+import org.lazyman.boot.base.controller.BaseController;
+import org.lazyman.boot.base.dto.StateActionDTO;
+import org.lazyman.boot.base.vo.PageVO;
+import org.lazyman.boot.base.vo.ResultVO;
 import org.lazyman.starter.redisson.annotation.Idempotency;
 import org.springframework.web.bind.annotation.*;
 

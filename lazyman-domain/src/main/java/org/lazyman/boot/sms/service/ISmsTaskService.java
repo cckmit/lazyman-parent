@@ -5,8 +5,8 @@ import org.lazyman.boot.sms.dto.SmsTaskFormDTO;
 import org.lazyman.boot.sms.dto.SmsTaskQueryDTO;
 import org.lazyman.boot.sms.entity.SmsTask;
 import org.lazyman.boot.sms.vo.SmsTaskVO;
-import org.lazyman.core.base.service.BaseService;
-import org.lazyman.core.base.vo.PageVO;
+import org.lazyman.boot.base.service.BaseService;
+import org.lazyman.boot.base.vo.PageVO;
 
 /**
  * <p>

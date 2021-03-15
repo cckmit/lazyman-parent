@@ -6,9 +6,9 @@ import org.lazyman.boot.sys.entity.SysDept;
 import org.lazyman.boot.sys.vo.SysDeptTreeVO;
 import org.lazyman.boot.sys.vo.SysDeptVO;
 import org.lazyman.boot.sys.vo.VueElTreeVO;
-import org.lazyman.core.base.dto.StateActionDTO;
-import org.lazyman.core.base.service.BaseService;
-import org.lazyman.core.base.vo.PageVO;
+import org.lazyman.boot.base.dto.StateActionDTO;
+import org.lazyman.boot.base.service.BaseService;
+import org.lazyman.boot.base.vo.PageVO;
 
 import java.util.List;
 

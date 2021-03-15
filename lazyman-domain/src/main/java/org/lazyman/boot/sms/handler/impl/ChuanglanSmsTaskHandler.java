@@ -12,7 +12,7 @@ import org.lazyman.boot.sms.annotation.SmsVendor;
 import org.lazyman.boot.sms.bo.SmsMessageBO;
 import org.lazyman.boot.sms.entity.SmsChannel;
 import org.lazyman.boot.sms.handler.SmsTaskHandler;
-import org.lazyman.core.dingtalk.DingTalkHelper;
+import org.lazyman.boot.dingtalk.DingTalkHelper;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 

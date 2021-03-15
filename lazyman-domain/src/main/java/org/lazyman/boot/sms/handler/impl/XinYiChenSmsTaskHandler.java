@@ -12,7 +12,7 @@ import org.lazyman.boot.sms.entity.SmsChannel;
 import org.lazyman.boot.sms.handler.SmsTaskHandler;
 import org.lazyman.common.constant.CommonErrCode;
 import org.lazyman.common.util.MD5Utils;
-import org.lazyman.core.dingtalk.DingTalkHelper;
+import org.lazyman.boot.dingtalk.DingTalkHelper;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;

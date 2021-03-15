@@ -3,7 +3,7 @@ package org.lazyman.boot.sms.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.lazyman.core.base.dto.BaseQueryDTO;
+import org.lazyman.boot.base.dto.BaseQueryDTO;
 
 @ApiModel(value = "短信模板查询参数对象")
 @Data

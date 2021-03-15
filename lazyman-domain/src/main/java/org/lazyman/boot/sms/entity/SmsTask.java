@@ -2,7 +2,7 @@ package org.lazyman.boot.sms.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.util.Date;
-import org.lazyman.core.base.entity.BaseEntity;
+import org.lazyman.boot.base.entity.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

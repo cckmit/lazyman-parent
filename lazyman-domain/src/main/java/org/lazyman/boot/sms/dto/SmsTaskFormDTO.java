@@ -4,8 +4,8 @@ import cn.hutool.json.JSONObject;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.lazyman.core.base.dto.BaseDTO;
-import org.lazyman.core.validator.DateValue;
+import org.lazyman.boot.base.dto.BaseDTO;
+import org.lazyman.boot.validator.DateValue;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

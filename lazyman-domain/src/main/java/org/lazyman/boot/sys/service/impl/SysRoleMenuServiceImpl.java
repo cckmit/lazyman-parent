@@ -7,7 +7,7 @@ import org.lazyman.boot.sys.entity.SysRoleMenu;
 import org.lazyman.boot.sys.mapper.SysRoleMenuMapper;
 import org.lazyman.boot.sys.service.ISysMenuService;
 import org.lazyman.boot.sys.service.ISysRoleMenuService;
-import org.lazyman.core.base.service.impl.BaseServiceImpl;
+import org.lazyman.boot.base.service.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

@@ -11,7 +11,7 @@ import org.lazyman.boot.auth.vo.LoginVO;
 import org.lazyman.boot.sys.service.ISysUserService;
 import org.lazyman.boot.sys.vo.VueRouterTreeVO;
 import org.lazyman.common.util.ThreadLocalUtils;
-import org.lazyman.core.base.vo.ResultVO;
+import org.lazyman.boot.base.vo.ResultVO;
 import org.lazyman.starter.redisson.annotation.RequireRateLimit;
 import org.springframework.web.bind.annotation.*;
 

@@ -3,7 +3,7 @@ package org.lazyman.boot.sys.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.lazyman.core.base.dto.BaseQueryDTO;
+import org.lazyman.boot.base.dto.BaseQueryDTO;
 
 import java.util.List;
 

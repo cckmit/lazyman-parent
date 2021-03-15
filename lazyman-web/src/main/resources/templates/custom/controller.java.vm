@@ -6,14 +6,14 @@ import ${cfg.parent}.dto.${entity}QueryDTO;
 #if(${cfg.isOutputTreeAction})
 import ${cfg.parent}.vo.${entity}TreeVO;
 #end
-import org.lazyman.core.base.vo.PageVO;
+import org.lazyman.boot.base.vo.PageVO;
 #if(${cfg.isOutputStateAction})
-import org.lazyman.core.base.dto.StateActionDTO;
+import org.lazyman.boot.base.dto.StateActionDTO;
 #end
 import org.lazyman.starter.redisson.annotation.Idempotency;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
-import org.lazyman.core.base.vo.ResultVO;
+import org.lazyman.boot.base.vo.ResultVO;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 #else
-import org.springframework.stereotype.Controller;
 #end
 #if(${superControllerClassPackage})
 import ${superControllerClassPackage};

@@ -7,7 +7,7 @@ import org.lazyman.boot.sys.entity.SysRoleDept;
 import org.lazyman.boot.sys.mapper.SysRoleDeptMapper;
 import org.lazyman.boot.sys.service.ISysDeptService;
 import org.lazyman.boot.sys.service.ISysRoleDeptService;
-import org.lazyman.core.base.service.impl.BaseServiceImpl;
+import org.lazyman.boot.base.service.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

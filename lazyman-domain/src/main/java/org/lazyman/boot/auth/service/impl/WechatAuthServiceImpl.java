@@ -9,8 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.lazyman.boot.auth.service.WechatAuthService;
 import org.lazyman.common.constant.CommonErrCode;
 import org.lazyman.common.exception.BizException;
-import org.lazyman.core.config.WechatAuthProperties;
-import org.lazyman.core.dingtalk.DingTalkHelper;
+import org.lazyman.boot.config.WechatAuthProperties;
+import org.lazyman.boot.dingtalk.DingTalkHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 

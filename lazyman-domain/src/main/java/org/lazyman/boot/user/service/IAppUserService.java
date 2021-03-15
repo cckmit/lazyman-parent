@@ -4,9 +4,9 @@ import org.lazyman.boot.user.dto.AppUserFormDTO;
 import org.lazyman.boot.user.dto.AppUserQueryDTO;
 import org.lazyman.boot.user.entity.AppUser;
 import org.lazyman.boot.user.vo.AppUserVO;
-import org.lazyman.core.base.dto.StateActionDTO;
-import org.lazyman.core.base.service.BaseService;
-import org.lazyman.core.base.vo.PageVO;
+import org.lazyman.boot.base.dto.StateActionDTO;
+import org.lazyman.boot.base.service.BaseService;
+import org.lazyman.boot.base.vo.PageVO;
 
 /**
  * <p>
