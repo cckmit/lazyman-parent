@@ -9,9 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>lazyman-core</artifactId>
-    <name>lazyman-core</name>
-    <description>lazyman-core</description>
+    <artifactId>lazyman-starter-boot</artifactId>
+    <name>lazyman-starter-boot</name>
+    <description>lazyman-starter-boot</description>
     <packaging>jar</packaging>
 
     <dependencies>
