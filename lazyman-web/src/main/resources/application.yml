@@ -83,4 +83,4 @@ tenant:
 auth:
   api:
     path: /api/**
-    excludePath: /api/auth/**,/api/app/auth/**,/api/appUsers/**
+    excludePath: /api/auth/**,/api/app/auth/**
