@@ -3,13 +3,13 @@ package org.lazyman.boot.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.lazyman.boot.base.vo.ResultVO;
 import org.lazyman.boot.common.auth.dto.AppLoginDTO;
 import org.lazyman.boot.common.auth.service.IAuthService;
 import org.lazyman.boot.common.auth.vo.LoginVO;
 import org.lazyman.boot.user.service.IAppUserService;
 import org.lazyman.boot.user.vo.AppUserVO;
 import org.lazyman.common.util.ThreadLocalUtils;
-import org.lazyman.boot.base.vo.ResultVO;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

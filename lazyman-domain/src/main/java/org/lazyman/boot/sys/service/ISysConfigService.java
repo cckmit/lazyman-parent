@@ -1,12 +1,12 @@
 package org.lazyman.boot.sys.service;
 
+import org.lazyman.boot.base.dto.StateActionDTO;
+import org.lazyman.boot.base.service.BaseService;
+import org.lazyman.boot.base.vo.PageVO;
 import org.lazyman.boot.sys.dto.SysConfigFormDTO;
 import org.lazyman.boot.sys.dto.SysConfigQueryDTO;
 import org.lazyman.boot.sys.entity.SysConfig;
 import org.lazyman.boot.sys.vo.SysConfigVO;
-import org.lazyman.boot.base.dto.StateActionDTO;
-import org.lazyman.boot.base.service.BaseService;
-import org.lazyman.boot.base.vo.PageVO;
 
 import java.util.List;
 

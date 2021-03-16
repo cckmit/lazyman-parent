@@ -1,12 +1,12 @@
 package org.lazyman.boot.sys.service;
 
+import org.lazyman.boot.base.dto.StateActionDTO;
+import org.lazyman.boot.base.service.BaseService;
+import org.lazyman.boot.base.vo.PageVO;
 import org.lazyman.boot.sys.dto.SysDictDataFormDTO;
 import org.lazyman.boot.sys.dto.SysDictDataQueryDTO;
 import org.lazyman.boot.sys.entity.SysDictData;
 import org.lazyman.boot.sys.vo.SysDictDataVO;
-import org.lazyman.boot.base.dto.StateActionDTO;
-import org.lazyman.boot.base.service.BaseService;
-import org.lazyman.boot.base.vo.PageVO;
 
 /**
  * <p>

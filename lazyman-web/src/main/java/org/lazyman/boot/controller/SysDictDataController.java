@@ -3,14 +3,14 @@ package org.lazyman.boot.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.lazyman.boot.sys.dto.SysDictDataFormDTO;
-import org.lazyman.boot.sys.dto.SysDictDataQueryDTO;
-import org.lazyman.boot.sys.service.ISysDictDataService;
-import org.lazyman.boot.sys.vo.SysDictDataVO;
 import org.lazyman.boot.base.controller.BaseController;
 import org.lazyman.boot.base.dto.StateActionDTO;
 import org.lazyman.boot.base.vo.PageVO;
 import org.lazyman.boot.base.vo.ResultVO;
+import org.lazyman.boot.sys.dto.SysDictDataFormDTO;
+import org.lazyman.boot.sys.dto.SysDictDataQueryDTO;
+import org.lazyman.boot.sys.service.ISysDictDataService;
+import org.lazyman.boot.sys.vo.SysDictDataVO;
 import org.lazyman.starter.redisson.annotation.Idempotency;
 import org.springframework.web.bind.annotation.*;
 

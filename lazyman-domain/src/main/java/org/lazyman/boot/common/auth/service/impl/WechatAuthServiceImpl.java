@@ -7,10 +7,10 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.lazyman.boot.common.auth.service.WechatAuthService;
-import org.lazyman.common.constant.CommonErrCode;
-import org.lazyman.common.exception.BizException;
 import org.lazyman.boot.config.WechatAuthProperties;
 import org.lazyman.boot.dingtalk.DingTalkHelper;
+import org.lazyman.common.constant.CommonErrCode;
+import org.lazyman.common.exception.BizException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 

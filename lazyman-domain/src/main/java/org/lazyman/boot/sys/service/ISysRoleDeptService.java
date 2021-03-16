@@ -1,7 +1,7 @@
 package org.lazyman.boot.sys.service;
 
-import org.lazyman.boot.sys.entity.SysRoleDept;
 import org.lazyman.boot.base.service.BaseService;
+import org.lazyman.boot.sys.entity.SysRoleDept;
 
 import java.util.List;
 

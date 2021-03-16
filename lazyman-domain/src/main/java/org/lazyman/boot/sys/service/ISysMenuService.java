@@ -1,5 +1,8 @@
 package org.lazyman.boot.sys.service;
 
+import org.lazyman.boot.base.dto.StateActionDTO;
+import org.lazyman.boot.base.service.BaseService;
+import org.lazyman.boot.base.vo.PageVO;
 import org.lazyman.boot.sys.dto.SysMenuFormDTO;
 import org.lazyman.boot.sys.dto.SysMenuQueryDTO;
 import org.lazyman.boot.sys.entity.SysMenu;
@@ -7,9 +10,6 @@ import org.lazyman.boot.sys.vo.SysMenuTreeVO;
 import org.lazyman.boot.sys.vo.SysMenuVO;
 import org.lazyman.boot.sys.vo.VueElTreeVO;
 import org.lazyman.boot.sys.vo.VueRouterTreeVO;
-import org.lazyman.boot.base.dto.StateActionDTO;
-import org.lazyman.boot.base.service.BaseService;
-import org.lazyman.boot.base.vo.PageVO;
 
 import java.util.List;
 

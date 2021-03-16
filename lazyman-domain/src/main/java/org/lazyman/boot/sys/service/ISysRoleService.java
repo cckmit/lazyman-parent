@@ -1,13 +1,13 @@
 package org.lazyman.boot.sys.service;
 
+import org.lazyman.boot.base.dto.StateActionDTO;
+import org.lazyman.boot.base.service.BaseService;
+import org.lazyman.boot.base.vo.PageVO;
 import org.lazyman.boot.sys.dto.SysRoleDataScopeFormDTO;
 import org.lazyman.boot.sys.dto.SysRoleFormDTO;
 import org.lazyman.boot.sys.dto.SysRoleQueryDTO;
 import org.lazyman.boot.sys.entity.SysRole;
 import org.lazyman.boot.sys.vo.SysRoleVO;
-import org.lazyman.boot.base.dto.StateActionDTO;
-import org.lazyman.boot.base.service.BaseService;
-import org.lazyman.boot.base.vo.PageVO;
 
 import java.util.List;
 

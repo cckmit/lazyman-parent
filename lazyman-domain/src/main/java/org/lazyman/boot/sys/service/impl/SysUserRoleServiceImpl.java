@@ -2,12 +2,12 @@ package org.lazyman.boot.sys.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import org.lazyman.boot.base.service.impl.BaseServiceImpl;
 import org.lazyman.boot.sys.entity.SysRole;
 import org.lazyman.boot.sys.entity.SysUserRole;
 import org.lazyman.boot.sys.mapper.SysUserRoleMapper;
 import org.lazyman.boot.sys.service.ISysRoleService;
 import org.lazyman.boot.sys.service.ISysUserRoleService;
-import org.lazyman.boot.base.service.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
