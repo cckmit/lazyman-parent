@@ -1,4 +1,4 @@
-package org.lazyman.boot.auth.service.impl;
+package org.lazyman.boot.common.auth.service.impl;
 
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.exceptions.ExceptionUtil;
@@ -6,7 +6,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.lazyman.boot.auth.service.WechatAuthService;
+import org.lazyman.boot.common.auth.service.WechatAuthService;
 import org.lazyman.common.constant.CommonErrCode;
 import org.lazyman.common.exception.BizException;
 import org.lazyman.boot.config.WechatAuthProperties;

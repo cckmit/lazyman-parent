@@ -1,4 +1,4 @@
-package org.lazyman.boot.auth.dto;
+package org.lazyman.boot.common.auth.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

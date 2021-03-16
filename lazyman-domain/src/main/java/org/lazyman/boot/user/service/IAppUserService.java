@@ -1,12 +1,14 @@
 package org.lazyman.boot.user.service;
 
+import org.lazyman.boot.base.dto.StateActionDTO;
+import org.lazyman.boot.base.service.BaseService;
+import org.lazyman.boot.base.vo.PageVO;
 import org.lazyman.boot.user.dto.AppUserFormDTO;
 import org.lazyman.boot.user.dto.AppUserQueryDTO;
 import org.lazyman.boot.user.entity.AppUser;
 import org.lazyman.boot.user.vo.AppUserVO;
-import org.lazyman.boot.base.dto.StateActionDTO;
-import org.lazyman.boot.base.service.BaseService;
-import org.lazyman.boot.base.vo.PageVO;
+
+import java.util.List;
 
 /**
  * <p>
@@ -48,6 +50,14 @@ public interface IAppUserService extends BaseService<AppUser> {
      * @return
      */
     PageVO<AppUserVO> listByPage(AppUserQueryDTO appBuyerQueryDTO);
+
+    /**
+     * 导出查询
+     *
+     * @param appBuyerQueryDTO
+     * @return
+     */
+    List<AppUserVO> listByExport(AppUserQueryDTO appBuyerQueryDTO);
 
 
     /**

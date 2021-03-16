@@ -1,6 +1,6 @@
 package org.lazyman.boot.sys.service;
 
-import org.lazyman.boot.auth.vo.LoginUserInfoVO;
+import org.lazyman.boot.common.auth.vo.LoginUserInfoVO;
 import org.lazyman.boot.sys.dto.*;
 import org.lazyman.boot.sys.entity.SysUser;
 import org.lazyman.boot.sys.vo.*;

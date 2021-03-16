@@ -4,8 +4,12 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.lazyman.boot.base.dto.StateActionDTO;
+import org.lazyman.boot.base.service.impl.BaseServiceImpl;
+import org.lazyman.boot.base.vo.PageVO;
 import org.lazyman.boot.user.dto.AppUserFormDTO;
 import org.lazyman.boot.user.dto.AppUserQueryDTO;
 import org.lazyman.boot.user.entity.AppUser;
@@ -14,11 +18,12 @@ import org.lazyman.boot.user.service.IAppUserService;
 import org.lazyman.boot.user.vo.AppUserVO;
 import org.lazyman.common.constant.CommonErrCode;
 import org.lazyman.common.exception.BizException;
-import org.lazyman.boot.base.dto.StateActionDTO;
-import org.lazyman.boot.base.service.impl.BaseServiceImpl;
-import org.lazyman.boot.base.vo.PageVO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -60,6 +65,20 @@ public class AppUserServiceImpl extends BaseServiceImpl<AppUserMapper, AppUser> 
                 .between(StrUtil.isAllNotBlank(appBuyerQueryDTO.getBeginTime(), appBuyerQueryDTO.getEndTime()), AppUser::getCreateTime, appBuyerQueryDTO.getBeginTime(), appBuyerQueryDTO.getEndTime())
                 .orderByDesc(AppUser::getCreateTime)).convert(v -> BeanUtil.copyProperties(v, AppUserVO.class));
         return new PageVO<>(appBuyerVOIPage.getTotal(), appBuyerVOIPage.getRecords());
+    }
+
+    @Override
+    public List<AppUserVO> listByExport(AppUserQueryDTO appBuyerQueryDTO) {
+        List<AppUserVO> appUserVOList = new ArrayList<>();
+        List<AppUser> appUserList = list(Wrappers.<AppUser>query().lambda()
+                //todo query condition
+                .eq(ObjectUtil.isNotEmpty(appBuyerQueryDTO.getState()), AppUser::getState, appBuyerQueryDTO.getState())
+                .between(StrUtil.isAllNotBlank(appBuyerQueryDTO.getBeginTime(), appBuyerQueryDTO.getEndTime()), AppUser::getCreateTime, appBuyerQueryDTO.getBeginTime(), appBuyerQueryDTO.getEndTime())
+                .orderByDesc(AppUser::getCreateTime));
+        if (CollectionUtils.isEmpty(appUserList)) {
+            return appUserVOList;
+        }
+        return appUserList.stream().map(v -> BeanUtil.copyProperties(v, AppUserVO.class)).collect(Collectors.toList());
     }
 
 

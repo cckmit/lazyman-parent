@@ -1,4 +1,4 @@
-package org.lazyman.boot.auth.service.impl;
+package org.lazyman.boot.common.auth.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -7,10 +7,10 @@ import cn.hutool.crypto.digest.BCrypt;
 import cn.hutool.json.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.extern.slf4j.Slf4j;
-import org.lazyman.boot.auth.dto.AppLoginDTO;
-import org.lazyman.boot.auth.dto.WebLoginDTO;
-import org.lazyman.boot.auth.service.IAuthService;
-import org.lazyman.boot.auth.vo.LoginVO;
+import org.lazyman.boot.common.auth.dto.AppLoginDTO;
+import org.lazyman.boot.common.auth.dto.WebLoginDTO;
+import org.lazyman.boot.common.auth.service.IAuthService;
+import org.lazyman.boot.common.auth.vo.LoginVO;
 import org.lazyman.boot.common.constant.LazymanConstant;
 import org.lazyman.boot.common.constant.LazymanErrCode;
 import org.lazyman.boot.sms.dto.SmsTaskFormDTO;

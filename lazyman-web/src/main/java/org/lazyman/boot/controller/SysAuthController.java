@@ -2,12 +2,12 @@ package org.lazyman.boot.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.lazyman.boot.auth.dto.WebLoginDTO;
-import org.lazyman.boot.auth.service.IAuthService;
-import org.lazyman.boot.auth.service.IKaptchaService;
-import org.lazyman.boot.auth.vo.KaptchaVO;
-import org.lazyman.boot.auth.vo.LoginUserInfoVO;
-import org.lazyman.boot.auth.vo.LoginVO;
+import org.lazyman.boot.common.auth.dto.WebLoginDTO;
+import org.lazyman.boot.common.auth.service.IAuthService;
+import org.lazyman.boot.common.auth.service.IKaptchaService;
+import org.lazyman.boot.common.auth.vo.KaptchaVO;
+import org.lazyman.boot.common.auth.vo.LoginUserInfoVO;
+import org.lazyman.boot.common.auth.vo.LoginVO;
 import org.lazyman.boot.sys.service.ISysUserService;
 import org.lazyman.boot.sys.vo.VueRouterTreeVO;
 import org.lazyman.common.util.ThreadLocalUtils;

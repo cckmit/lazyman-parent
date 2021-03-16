@@ -1,7 +1,7 @@
-package org.lazyman.boot.auth.service;
+package org.lazyman.boot.common.auth.service;
 
 
-import org.lazyman.boot.auth.vo.KaptchaVO;
+import org.lazyman.boot.common.auth.vo.KaptchaVO;
 
 /**
  * @author wanglong

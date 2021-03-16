@@ -1,9 +1,9 @@
-package org.lazyman.boot.auth.service.impl;
+package org.lazyman.boot.common.auth.service.impl;
 
 import cn.hutool.core.util.StrUtil;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
-import org.lazyman.boot.auth.service.IKaptchaService;
-import org.lazyman.boot.auth.vo.KaptchaVO;
+import org.lazyman.boot.common.auth.service.IKaptchaService;
+import org.lazyman.boot.common.auth.vo.KaptchaVO;
 import org.lazyman.boot.common.constant.LazymanConstant;
 import org.lazyman.boot.common.constant.LazymanErrCode;
 import org.lazyman.boot.sys.service.ISysLoginLogService;

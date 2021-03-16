@@ -1,4 +1,4 @@
-package org.lazyman.boot.auth.vo;
+package org.lazyman.boot.common.auth.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

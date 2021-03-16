@@ -1,4 +1,4 @@
-package org.lazyman.boot.auth.service;
+package org.lazyman.boot.common.auth.service;
 
 import cn.hutool.json.JSONObject;
 

@@ -8,7 +8,7 @@ import cn.hutool.crypto.digest.BCrypt;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.lazyman.boot.auth.vo.LoginUserInfoVO;
+import org.lazyman.boot.common.auth.vo.LoginUserInfoVO;
 import org.lazyman.boot.common.constant.LazymanConstant;
 import org.lazyman.boot.common.constant.LazymanErrCode;
 import org.lazyman.boot.common.constant.MenuType;

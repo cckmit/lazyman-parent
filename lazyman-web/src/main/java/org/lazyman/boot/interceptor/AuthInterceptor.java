@@ -2,7 +2,7 @@ package org.lazyman.boot.interceptor;
 
 import cn.hutool.core.util.ObjectUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.lazyman.boot.auth.service.IAuthService;
+import org.lazyman.boot.common.auth.service.IAuthService;
 import org.lazyman.common.constant.StringPool;
 import org.lazyman.common.util.WebUtils;
 import org.lazyman.boot.permission.RequiresPermissions;

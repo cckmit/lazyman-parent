@@ -1,8 +1,8 @@
-package org.lazyman.boot.auth.service;
+package org.lazyman.boot.common.auth.service;
 
-import org.lazyman.boot.auth.dto.AppLoginDTO;
-import org.lazyman.boot.auth.dto.WebLoginDTO;
-import org.lazyman.boot.auth.vo.LoginVO;
+import org.lazyman.boot.common.auth.dto.AppLoginDTO;
+import org.lazyman.boot.common.auth.dto.WebLoginDTO;
+import org.lazyman.boot.common.auth.vo.LoginVO;
 import org.lazyman.boot.permission.Logical;
 
 /**
