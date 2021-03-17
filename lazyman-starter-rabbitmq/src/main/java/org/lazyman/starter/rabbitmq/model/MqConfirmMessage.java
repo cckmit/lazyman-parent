@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 @Data
 public class MqConfirmMessage implements Serializable {
-    private Long id;
+    private Long msgId;
 
     private Boolean result;
 

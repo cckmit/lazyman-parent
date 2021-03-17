@@ -8,15 +8,9 @@ import java.io.Serializable;
 public class MqMessage implements Serializable {
     private Long tenantId;
 
-    private Long id;
-
-    private String tag;
+    private Long msgId;
 
     private Long timestamp;
 
-    private String nonce;
-
     private String body;
-
-    private String sign;
 }
