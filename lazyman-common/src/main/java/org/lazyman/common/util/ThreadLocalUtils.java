@@ -8,7 +8,7 @@ import java.util.Map;
 public final class ThreadLocalUtils {
     private static ThreadLocal<Map<String, Object>> threadLocal = ThreadLocal.withInitial(() -> {
         Map<String, Object> map = new HashMap<>();
-        map.put(CommonConstant.X_TRACE_ID, IDGeneratorUtils.getInstance().nextId());
+        map.put(CommonConstant.X_TRACE_ID, SnowIDUtils.getInstance().nextId());
         return map;
     });
 
@@ -45,6 +45,10 @@ public final class ThreadLocalUtils {
 
     public static Long getTraceId() {
         return (Long) threadLocal.get().get(CommonConstant.X_TRACE_ID);
+    }
+
+    public static void remove(String key) {
+        threadLocal.get().remove(key);
     }
 
     public static void remove() {

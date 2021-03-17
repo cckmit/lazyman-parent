@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.lazyman.common.util.ThreadLocalUtils;
-import org.lazyman.common.util.IDGeneratorUtils;
+import org.lazyman.common.util.SnowIDUtils;
 import org.lazyman.boot.base.entity.BaseEntity;
 import org.lazyman.boot.base.service.BaseService;
 import org.springframework.transaction.annotation.Transactional;
@@ -183,7 +183,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
         if (isNew) {
             //初始化ID
             if (Objects.isNull(entity.getId())) {
-                entity.setId(IDGeneratorUtils.getInstance().nextId());
+                entity.setId(SnowIDUtils.getInstance().nextId());
             }
             //创建人
             Long userId = ThreadLocalUtils.getCurrentUserId();

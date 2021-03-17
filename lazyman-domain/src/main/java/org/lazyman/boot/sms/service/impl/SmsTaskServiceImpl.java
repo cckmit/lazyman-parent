@@ -28,7 +28,7 @@ import org.lazyman.boot.sms.vo.SmsTaskVO;
 import org.lazyman.common.constant.CommonErrCode;
 import org.lazyman.common.constant.StringPool;
 import org.lazyman.common.exception.BizException;
-import org.lazyman.common.util.IDGeneratorUtils;
+import org.lazyman.common.util.SnowIDUtils;
 import org.lazyman.boot.base.service.impl.BaseServiceImpl;
 import org.lazyman.boot.base.vo.PageVO;
 import org.lazyman.starter.redisson.RedissonTemplate;
@@ -79,7 +79,7 @@ public class SmsTaskServiceImpl extends BaseServiceImpl<SmsTaskMapper, SmsTask> 
         }
         String[] mobiles = StringUtil.split(smsTaskFormDTO.getMobiles(), StringPool.COMMA);
         String content = smsTaskHelper.getContent(smsTemplate.getContent(), smsTaskFormDTO.getTemplateParams());
-        Long batchId = IDGeneratorUtils.getInstance().nextId();
+        Long batchId = SnowIDUtils.getInstance().nextId();
         SmsTask smsTask = null;
         List<SmsTask> iSmsTaskList = new ArrayList<>();
         if (mobiles != null && mobiles.length > 0) {

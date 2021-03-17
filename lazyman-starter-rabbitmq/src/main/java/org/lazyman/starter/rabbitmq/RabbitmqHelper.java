@@ -6,7 +6,7 @@ import com.rabbitmq.client.Channel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.lazyman.common.util.IDGeneratorUtils;
+import org.lazyman.common.util.SnowIDUtils;
 import org.lazyman.starter.rabbitmq.constant.RabbitmqConstant;
 import org.lazyman.starter.rabbitmq.model.MqConfirmMessage;
 import org.lazyman.starter.rabbitmq.model.MqMessage;
@@ -99,7 +99,7 @@ public class RabbitmqHelper {
         //消息结构
         MqMessage mqMessage = new MqMessage();
         mqMessage.setTenantId(bizMqMessage.getTenantId());
-        mqMessage.setMsgId(IDGeneratorUtils.getInstance().nextId());
+        mqMessage.setMsgId(SnowIDUtils.getInstance().nextId());
         mqMessage.setTimestamp(System.currentTimeMillis());
         //消息内容
         MqConfirmMessage mqConfirmMessage = new MqConfirmMessage();

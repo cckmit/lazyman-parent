@@ -5,7 +5,7 @@ import java.net.InetAddress;
 
 import static java.lang.Math.abs;
 
-public class IDGeneratorUtils {
+public class SnowIDUtils {
     private static final long TWEPOCH = 1288834974657L;
     private static final long WORKER_ID_BITS = 5L;
     private static final long DATA_CENTER_ID_BITS = 5L;
@@ -22,18 +22,18 @@ public class IDGeneratorUtils {
     private long sequenceMask = -1L ^ (-1L << (int) SEQUENCE_BITS);
     private long lastTimestamp = -1L;
 
-    private static volatile IDGeneratorUtils idGeneratorUtils = null;
+    private static volatile SnowIDUtils snowIdUtils = null;
 
-    private IDGeneratorUtils(final long workerId) {
+    private SnowIDUtils(final long workerId) {
         this(workerId, 0);
     }
 
-    private IDGeneratorUtils(long workerId, long dataCenterId) {
+    private SnowIDUtils(long workerId, long dataCenterId) {
         this.workerId = abs(workerId % MAX_WORKER_ID);
         this.dataCenterId = abs(dataCenterId % MAX_DATA_CENTER_ID);
     }
 
-    public static IDGeneratorUtils getInstance() {
+    public static SnowIDUtils getInstance() {
         Integer hostHashCode = 0;
         try {
             if (InetAddress.getLocalHost().getHostAddress().hashCode() != 0) {
@@ -41,19 +41,19 @@ public class IDGeneratorUtils {
             }
         } catch (Exception e) {
         }
-        return IDGeneratorUtils.getInstance(hostHashCode);
+        return SnowIDUtils.getInstance(hostHashCode);
     }
 
-    public static IDGeneratorUtils getInstance(final long workerId) {
-        if (idGeneratorUtils == null) {
-            synchronized (IDGeneratorUtils.class) {
-                if (idGeneratorUtils == null) {
-                    idGeneratorUtils = new IDGeneratorUtils(workerId);
+    public static SnowIDUtils getInstance(final long workerId) {
+        if (snowIdUtils == null) {
+            synchronized (SnowIDUtils.class) {
+                if (snowIdUtils == null) {
+                    snowIdUtils = new SnowIDUtils(workerId);
                 }
             }
-            return idGeneratorUtils;
+            return snowIdUtils;
         } else {
-            return idGeneratorUtils;
+            return snowIdUtils;
         }
     }
 
