@@ -175,7 +175,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
         }
         //超管拥有所有权限
         if (sysUserDetailVO.getUser().getIsAdmin()) {
-            loginUserInfoVO.setPermissions(Arrays.asList(LazymanConstant.AMDIN_PERMISSION));
+            loginUserInfoVO.setPermissions(Arrays.asList(LazymanConstant.Permission.ADMIN));
         } else {
             List<SysMenuVO> sysMenuVOList = listUserPermissions(userId);
             if (CollectionUtil.isNotEmpty(sysMenuVOList)) {

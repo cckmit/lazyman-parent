@@ -7,6 +7,8 @@ import org.lazyman.boot.base.controller.BaseController;
 import org.lazyman.boot.base.dto.StateActionDTO;
 import org.lazyman.boot.base.vo.PageVO;
 import org.lazyman.boot.base.vo.ResultVO;
+import org.lazyman.boot.common.constant.LazymanConstant;
+import org.lazyman.boot.permission.RequiresPermissions;
 import org.lazyman.boot.sys.dto.SysRoleDataScopeFormDTO;
 import org.lazyman.boot.sys.dto.SysRoleFormDTO;
 import org.lazyman.boot.sys.dto.SysRoleQueryDTO;
@@ -37,6 +39,7 @@ public class SysRoleController extends BaseController {
     @ApiOperation(value = "新增系统角色")
     @PostMapping
     @Idempotency
+    @RequiresPermissions(LazymanConstant.Permission.SYSTEM_ROLE_ADD)
     public ResultVO<Long> saveSysRole(@Valid @RequestBody SysRoleFormDTO sysRoleFormDTO) {
         return ResultVO.ok(iSysRoleService.save(sysRoleFormDTO));
     }
@@ -44,6 +47,7 @@ public class SysRoleController extends BaseController {
     @ApiOperation(value = "编辑系统角色")
     @PutMapping(value = "/{id}")
     @Idempotency
+    @RequiresPermissions(LazymanConstant.Permission.SYSTEM_ROLE_EDIT)
     public ResultVO editSysRole(@ApiParam(value = "系统角色ID", required = true) @PathVariable(value = "id") Long id, @Valid @RequestBody SysRoleFormDTO sysRoleFormDTO) {
         sysRoleFormDTO.setId(id);
         return ResultVO.ok(iSysRoleService.edit(sysRoleFormDTO));
@@ -51,6 +55,7 @@ public class SysRoleController extends BaseController {
 
     @ApiOperation(value = "删除系统角色")
     @DeleteMapping(value = "/{ids}")
+    @RequiresPermissions(LazymanConstant.Permission.SYSTEM_ROLE_REMOVE)
     public ResultVO deleteSysRole(@ApiParam(value = "系统角色ID集合，多个用英文逗号隔开", required = true) @PathVariable(value = "ids") Long[] ids) {
         return ResultVO.ok(iSysRoleService.delete(ids));
     }
@@ -75,6 +80,7 @@ public class SysRoleController extends BaseController {
 
     @ApiOperation(value = "启用/禁用系统角色")
     @PatchMapping(value = "/{id}")
+    @RequiresPermissions(LazymanConstant.Permission.SYSTEM_ROLE_EDIT)
     public ResultVO updateState(@ApiParam(value = "系统角色ID", required = true) @PathVariable("id") Long id, @Valid @RequestBody StateActionDTO stateActionDTO) {
         stateActionDTO.setId(id);
         return ResultVO.ok(iSysRoleService.updateState(stateActionDTO));

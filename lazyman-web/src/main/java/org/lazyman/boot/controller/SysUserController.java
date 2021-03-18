@@ -7,6 +7,8 @@ import org.lazyman.boot.base.controller.BaseController;
 import org.lazyman.boot.base.dto.StateActionDTO;
 import org.lazyman.boot.base.vo.PageVO;
 import org.lazyman.boot.base.vo.ResultVO;
+import org.lazyman.boot.common.constant.LazymanConstant;
+import org.lazyman.boot.permission.RequiresPermissions;
 import org.lazyman.boot.sys.dto.*;
 import org.lazyman.boot.sys.service.ISysUserService;
 import org.lazyman.boot.sys.vo.SysUserDetailVO;
@@ -43,6 +45,7 @@ public class SysUserController extends BaseController {
     @ApiOperation(value = "新增系统用户")
     @PostMapping
     @Idempotency
+    @RequiresPermissions(LazymanConstant.Permission.SYSTEM_USER_ADD)
     public ResultVO<Long> saveSysUser(@Valid @RequestBody SysUserFormDTO sysUserFormDTO) {
         return ResultVO.ok(iSysUserService.save(sysUserFormDTO));
     }
@@ -50,6 +53,7 @@ public class SysUserController extends BaseController {
     @ApiOperation(value = "编辑系统用户")
     @PutMapping(value = "/{id}")
     @Idempotency
+    @RequiresPermissions(LazymanConstant.Permission.SYSTEM_USER_EDIT)
     public ResultVO editSysUser(@ApiParam(value = "系统用户ID", required = true) @PathVariable(value = "id") Long id, @Valid @RequestBody SysUserFormDTO sysUserFormDTO) {
         sysUserFormDTO.setId(id);
         return ResultVO.ok(iSysUserService.edit(sysUserFormDTO));
@@ -57,6 +61,7 @@ public class SysUserController extends BaseController {
 
     @ApiOperation(value = "删除系统用户")
     @DeleteMapping(value = "/{ids}")
+    @RequiresPermissions(LazymanConstant.Permission.SYSTEM_USER_REMOVE)
     public ResultVO deleteSysUser(@ApiParam(value = "系统用户ID集合，多个用英文逗号隔开", required = true) @PathVariable(value = "ids") Long[] ids) {
         return ResultVO.ok(iSysUserService.delete(ids));
     }
@@ -81,6 +86,7 @@ public class SysUserController extends BaseController {
 
     @ApiOperation(value = "启用/禁用系统用户")
     @PatchMapping(value = "/{id}")
+    @RequiresPermissions(LazymanConstant.Permission.SYSTEM_USER_EDIT)
     public ResultVO updateState(@ApiParam(value = "系统用户ID", required = true) @PathVariable("id") Long id, @Valid @RequestBody StateActionDTO stateActionDTO) {
         stateActionDTO.setId(id);
         return ResultVO.ok(iSysUserService.updateState(stateActionDTO));
@@ -89,6 +95,7 @@ public class SysUserController extends BaseController {
     @ApiOperation(value = "系统用户重置密码")
     @PatchMapping(value = "/resetPwd/{id}")
     @Idempotency
+    @RequiresPermissions(LazymanConstant.Permission.SYSTEM_USER_RESET_PWD)
     public ResultVO resetSysUserPwd(@ApiParam(value = "系统用户ID", required = true) @PathVariable("id") Long id, @Valid @RequestBody SysUserResetPwdDTO sysUserResetPwdDTO) {
         sysUserResetPwdDTO.setId(id);
         return ResultVO.ok(iSysUserService.resetSysUserPwd(sysUserResetPwdDTO));

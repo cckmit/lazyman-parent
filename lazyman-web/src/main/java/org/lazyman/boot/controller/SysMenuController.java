@@ -7,6 +7,8 @@ import org.lazyman.boot.base.controller.BaseController;
 import org.lazyman.boot.base.dto.StateActionDTO;
 import org.lazyman.boot.base.vo.PageVO;
 import org.lazyman.boot.base.vo.ResultVO;
+import org.lazyman.boot.common.constant.LazymanConstant;
+import org.lazyman.boot.permission.RequiresPermissions;
 import org.lazyman.boot.sys.dto.SysMenuFormDTO;
 import org.lazyman.boot.sys.dto.SysMenuQueryDTO;
 import org.lazyman.boot.sys.service.ISysMenuService;
@@ -38,6 +40,7 @@ public class SysMenuController extends BaseController {
     @ApiOperation(value = "新增系统菜单")
     @PostMapping
     @Idempotency
+    @RequiresPermissions(LazymanConstant.Permission.SYSTEM_MENU_ADD)
     public ResultVO<Long> saveSysMenu(@Valid @RequestBody SysMenuFormDTO sysMenuFormDTO) {
         return ResultVO.ok(iSysMenuService.save(sysMenuFormDTO));
     }
@@ -45,6 +48,7 @@ public class SysMenuController extends BaseController {
     @ApiOperation(value = "编辑系统菜单")
     @PutMapping(value = "/{id}")
     @Idempotency
+    @RequiresPermissions(LazymanConstant.Permission.SYSTEM_MENU_EDIT)
     public ResultVO editSysMenu(@ApiParam(value = "系统菜单ID", required = true) @PathVariable(value = "id") Long id, @Valid @RequestBody SysMenuFormDTO sysMenuFormDTO) {
         sysMenuFormDTO.setId(id);
         return ResultVO.ok(iSysMenuService.edit(sysMenuFormDTO));
@@ -52,6 +56,7 @@ public class SysMenuController extends BaseController {
 
     @ApiOperation(value = "删除系统菜单")
     @DeleteMapping(value = "/{ids}")
+    @RequiresPermissions(LazymanConstant.Permission.SYSTEM_MENU_REMOVE)
     public ResultVO deleteSysMenu(@ApiParam(value = "系统菜单ID集合，多个用英文逗号隔开", required = true) @PathVariable(value = "ids") Long[] ids) {
         return ResultVO.ok(iSysMenuService.delete(ids));
     }
@@ -70,6 +75,7 @@ public class SysMenuController extends BaseController {
 
     @ApiOperation(value = "启用/禁用系统菜单")
     @PatchMapping(value = "/{id}")
+    @RequiresPermissions(LazymanConstant.Permission.SYSTEM_MENU_EDIT)
     public ResultVO updateState(@ApiParam(value = "系统菜单ID", required = true) @PathVariable("id") Long id, @Valid @RequestBody StateActionDTO stateActionDTO) {
         stateActionDTO.setId(id);
         return ResultVO.ok(iSysMenuService.updateState(stateActionDTO));
