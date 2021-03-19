@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  org.lazyman.starter.activiti.config.MongodbAutoConfig
+  org.lazyman.starter.activiti.config.ActivitiAutoConfig

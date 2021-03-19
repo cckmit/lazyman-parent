@@ -36,6 +36,12 @@ spring:
   messages:
     basename: i18n/messages
     encoding: UTF-8
+  activiti:
+    check-process-definitions: false
+    database-schema-update: true
+    db-history-used: true
+    history-level: audit
+    async-executor-activate: false
 
 xss:
   enable: true

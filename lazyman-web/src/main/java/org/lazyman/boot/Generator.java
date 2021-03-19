@@ -87,21 +87,21 @@ public class Generator {
         String rootPackagePath = resourceBundle.getString("parentPackagePath");
         List<FileOutConfig> focList = new ArrayList<>();
         if (!simpleMode) {
-            focList.add(new FileOutConfig("/templates/custom/dto.query.java.vm") {
+            focList.add(new FileOutConfig("/templates/code/dto.query.java.vm") {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     return globalConfig.getOutputDir() + rootPackagePath + StringPool.SLASH + (StrUtil.isEmpty(packageConfig.getModuleName()) ? "" : moduleName)
                             + "/dto/" + tableInfo.getEntityName() + "QueryDTO.java";
                 }
             });
-            focList.add(new FileOutConfig("/templates/custom/dto.form.java.vm") {
+            focList.add(new FileOutConfig("/templates/code/dto.form.java.vm") {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     return globalConfig.getOutputDir() + rootPackagePath + StringPool.SLASH + (StrUtil.isEmpty(packageConfig.getModuleName()) ? "" : moduleName)
                             + "/dto/" + tableInfo.getEntityName() + "FormDTO.java";
                 }
             });
-            focList.add(new FileOutConfig("/templates/custom/vo.java.vm") {
+            focList.add(new FileOutConfig("/templates/code/vo.java.vm") {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     return globalConfig.getOutputDir() + rootPackagePath + StringPool.SLASH + (StrUtil.isEmpty(packageConfig.getModuleName()) ? "" : moduleName)
@@ -109,7 +109,7 @@ public class Generator {
                 }
             });
             if (isOutputTreeAction) {
-                focList.add(new FileOutConfig("/templates/custom/tree.vo.java.vm") {
+                focList.add(new FileOutConfig("/templates/code/tree.vo.java.vm") {
                     @Override
                     public String outputFile(TableInfo tableInfo) {
                         return globalConfig.getOutputDir() + rootPackagePath + StringPool.SLASH + (StrUtil.isEmpty(packageConfig.getModuleName()) ? "" : moduleName)
@@ -119,14 +119,14 @@ public class Generator {
             }
         }
         if (simpleMode) {
-            focList.add(new FileOutConfig("/templates/custom/simple.service.java.vm") {
+            focList.add(new FileOutConfig("/templates/code/simple.service.java.vm") {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     return globalConfig.getOutputDir() + rootPackagePath + StringPool.SLASH + (StrUtil.isEmpty(packageConfig.getModuleName()) ? "" : moduleName)
                             + "/service/I" + tableInfo.getEntityName() + "Service.java";
                 }
             });
-            focList.add(new FileOutConfig("/templates/custom/simple.serviceImpl.java.vm") {
+            focList.add(new FileOutConfig("/templates/code/simple.serviceImpl.java.vm") {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     return globalConfig.getOutputDir() + rootPackagePath + StringPool.SLASH + (StrUtil.isEmpty(packageConfig.getModuleName()) ? "" : moduleName)
@@ -137,12 +137,12 @@ public class Generator {
         injectionConfig.setFileOutConfigList(focList);
         autoGenerator.setCfg(injectionConfig);
         TemplateConfig templateConfig = new TemplateConfig();
-        templateConfig.setEntity("/templates/custom/entity.java.vm");
-        templateConfig.setXml("/templates/custom/mapper.xml.vm");
-        templateConfig.setMapper("/templates/custom/mapper.java.vm");
-        templateConfig.setService(simpleMode ? null : "/templates/custom/service.java.vm");
-        templateConfig.setServiceImpl(simpleMode ? null : "/templates/custom/serviceImpl.java.vm");
-        templateConfig.setController(simpleMode ? null : "/templates/custom/controller.java.vm");
+        templateConfig.setEntity("/templates/code/entity.java.vm");
+        templateConfig.setXml("/templates/code/mapper.xml.vm");
+        templateConfig.setMapper("/templates/code/mapper.java.vm");
+        templateConfig.setService(simpleMode ? null : "/templates/code/service.java.vm");
+        templateConfig.setServiceImpl(simpleMode ? null : "/templates/code/serviceImpl.java.vm");
+        templateConfig.setController(simpleMode ? null : "/templates/code/controller.java.vm");
         autoGenerator.setTemplate(templateConfig);
         autoGenerator.execute();
     }

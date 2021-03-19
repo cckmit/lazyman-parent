@@ -39,6 +39,7 @@
         <guava.version>30.0-jre</guava.version>
         <poi.version>4.1.2</poi.version>
         <easyexcel.version>2.2.6</easyexcel.version>
+        <activiti.version>7.1.0.M2</activiti.version>
     </properties>
 
     <modules>
@@ -223,6 +224,17 @@
                     <exclusion>
                         <groupId>org.apache.poi</groupId>
                         <artifactId>poi-ooxml-schemas</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.activiti</groupId>
+                <artifactId>activiti-spring-boot-starter</artifactId>
+                <version>${activiti.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>mybatis</artifactId>
+                        <groupId>org.mybatis</groupId>
                     </exclusion>
                 </exclusions>
             </dependency>

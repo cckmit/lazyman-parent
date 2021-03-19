@@ -1,6 +1,6 @@
-package org.lazyman.starter.mongodb.config;
+package org.lazyman.starter.activiti.config;
 
-import org.lazyman.starter.mongodb.MongodbHelper;
+import org.lazyman.starter.activiti.MongodbHelper;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

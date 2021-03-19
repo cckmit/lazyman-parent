@@ -15,7 +15,10 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>lazyman-cloud-boot</module>
         <module>lazyman-cloud-client</module>
         <module>lazyman-cloud-gateway</module>
+        <module>lazyman-cloud-system</module>
+        <module>lazyman-cloud-auth</module>
     </modules>
 </project>
